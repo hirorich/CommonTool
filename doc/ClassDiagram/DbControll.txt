@@ -10,10 +10,10 @@ class DB.DbStrage {
 }
 
 class DB.SqlStrage {
-  - {static} instance:DB.DbStrage = Nothing
+  - {static} instance:DB.SqlStrage = Nothing
 
   - {static} New()
-  + {static} CreateInstance():DB.DbStrage
+  + {static} CreateInstance():DB.SqlStrage
   + Add(dbname:String, connection:SqlConnection):Boolean
   + CreateDbController(dbname:String):DB.SqlController
 }
@@ -27,12 +27,12 @@ class DB.OleDbStrage {
   + CreateDbController(dbname:String):DB.OleDbController
 }
 
-class DB.DbController {
-  - dbname:String = String.Empty
-  # connection:IDbConnection = Nothing
-  # transaction:IDbTransaction = Nothing
+abstract class DB.DbController {
+  - connection:IDbConnection = Nothing
+  - transaction:IDbTransaction = Nothing
 
-  # {static} New(dbname:String, connection:IDbConnection)
+  # {static} New(connection:IDbConnection)
+  # {abstract} NewDbDataAdapter():System.Data.Common.DbDataAdapter
   + Open():Boolean
   + Close():Boolean
   + State():System.Data.ConnectionState
@@ -40,12 +40,13 @@ class DB.DbController {
   + Commit():Boolean
   + Rollback():Boolean
   # SearchRecord(command:IDbCommand):Datatable
-  # UpdateRecord(dataadapter:DbDataAdapter):Integer
+  # UpdateRecord(command:IDbCommand):Integer
 }
 
 class DB.SqlController {
 
-  ~ {static} New(dbname:String, connection:SqlConnection)
+  ~ {static} New(connection:SqlConnection)
+  # NewDbDataAdapter():System.Data.Common.DbDataAdapter
   + Select(query:String):Datatable
   + Select(query:String, parameters:SqlParameterCollection):Datatable
   + Insert(query:String):Integer
@@ -54,12 +55,12 @@ class DB.SqlController {
   + Delete(query:String, parameters:SqlParameterCollection):Integer
   + Update(query:String):Integer
   + Update(query:String, parameters:SqlParameterCollection):Integer
-  - UpdateRecord(command:SqlCommand):Integer
 }
 
 class DB.OleDbController {
 
-  ~ {static} New(dbname:String, connection:OleDbConnection)
+  ~ {static} New(connection:OleDbConnection)
+  # NewDbDataAdapter():System.Data.Common.DbDataAdapter
   + Select(query:String):Datatable
   + Select(query:String, parameters:OleDbParameterCollection):Datatable
   + Insert(query:String):Integer
@@ -68,7 +69,6 @@ class DB.OleDbController {
   + Delete(query:String, parameters:OleDbParameterCollection):Integer
   + Update(query:String):Integer
   + Update(query:String, parameters:OleDbParameterCollection):Integer
-  - UpdateRecord(command:OleDbCommand):Integer
 }
 
 DB.DbStrage <|-- DB.SqlStrage

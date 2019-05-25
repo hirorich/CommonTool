@@ -17,7 +17,7 @@ interface System.Data.IDbTransaction {
 System.Data.IDbTransaction <|.. System.Data.SqlClient.SqlTransaction
 System.Data.IDbTransaction <|.. System.Data.OleDb.OleDbTransaction
 
-class System.Data.Common.DbDataAdapter {
+abstract class System.Data.Common.DbDataAdapter {
   SelectCommand:System.Data.IDbCommand
   
   Fill(dataTable:DataTable):Integer
