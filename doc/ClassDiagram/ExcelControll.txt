@@ -1,0 +1,27 @@
+@startuml ExcelControll.png
+
+interface System.IDisposable {
+  + Dispose()
+}
+
+class Excel.Book {
+  - bookname:String = String.Empty
+  - workbook:Microsoft.Office.Interop.Excel.Workbook = Nothing
+  - worksheets:Microsoft.Office.Interop.Excel.Worksheets = Nothing
+  - {field} sheetlist:ArrayList(Of Excel.Sheet) = Nothing
+  
+  + Dispose()
+}
+System.IDisposable <|.. Excel.Book
+
+class Excel.Sheet {
+  - sheetname:String = String.Empty
+  - worksheet:Microsoft.Office.Interop.Excel.Worksheet = Nothing
+  
+  + Dispose()
+}
+System.IDisposable <|.. Excel.Sheet
+
+Excel.Book *-- Excel.Sheet
+
+@enduml

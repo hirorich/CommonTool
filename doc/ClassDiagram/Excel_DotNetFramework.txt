@@ -1,0 +1,21 @@
+@startuml Excel_DotNetFramework.png
+
+interface Microsoft.Office.Interop.Excel.Workbook {
+  Sheets:Microsoft.Office.Interop.Excel.Sheets
+}
+Microsoft.Office.Interop.Excel.Workbook <|.. Microsoft.Office.Interop.Excel.WorkbookClass
+
+interface Microsoft.Office.Interop.Excel.Sheets
+interface Microsoft.Office.Interop.Excel.Worksheets
+Microsoft.Office.Interop.Excel.Sheets <|.. Microsoft.Office.Interop.Excel.Worksheets
+
+interface Microsoft.Office.Interop.Excel.Worksheet
+Microsoft.Office.Interop.Excel.Worksheet <|.. Microsoft.Office.Interop.Excel.WorksheetClass
+
+interface Microsoft.Office.Interop.Excel.Range
+
+Microsoft.Office.Interop.Excel.Workbook *-- Microsoft.Office.Interop.Excel.Sheets
+Microsoft.Office.Interop.Excel.Worksheets *-- Microsoft.Office.Interop.Excel.Worksheet
+Microsoft.Office.Interop.Excel.Worksheet *-- Microsoft.Office.Interop.Excel.Range
+
+@enduml
