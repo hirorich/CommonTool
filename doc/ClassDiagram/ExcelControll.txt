@@ -4,6 +4,10 @@ interface System.IDisposable {
   + Dispose()
 }
 
+class System.Runtime.InteropServices.Marshal {
+  + {static} ReleaseComObject(Object):Integer
+}
+
 class Excel.Book {
   - bookname:String = String.Empty
   - workbook:Microsoft.Office.Interop.Excel.Workbook = Nothing
@@ -23,5 +27,8 @@ class Excel.Sheet {
 System.IDisposable <|.. Excel.Sheet
 
 Excel.Book *-- Excel.Sheet
+
+System.Runtime.InteropServices.Marshal <-- Excel.Book:Dispose
+System.Runtime.InteropServices.Marshal <-- Excel.Sheet:Dispose
 
 @enduml
