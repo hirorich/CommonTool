@@ -1,0 +1,62 @@
+@startuml DB_DotNetFramework.png
+
+interface System.Data.IDbConnection {
+  State:System.Data.ConnectionState
+
+  BeginTransaction():System.Data.IDbTransaction
+  Open()
+  Close()
+}
+System.Data.IDbConnection <|.. System.Data.SqlClient.SqlConnection
+System.Data.IDbConnection <|.. System.Data.OleDb.OleDbConnection
+
+interface System.Data.IDbTransaction {
+  Commit()
+  Rollback()
+}
+System.Data.IDbTransaction <|.. System.Data.SqlClient.SqlTransaction
+System.Data.IDbTransaction <|.. System.Data.OleDb.OleDbTransaction
+
+class System.Data.Common.DbDataAdapter {
+  SelectCommand:System.Data.IDbCommand
+  
+  Fill(dataTable:DataTable):Integer
+}
+System.Data.Common.DbDataAdapter <|-- System.Data.SqlClient.SqlDataAdapter
+System.Data.Common.DbDataAdapter <|-- System.Data.OleDb.OleDbDataAdapter
+
+interface System.Data.IDbCommand {
+  CommandTest:String
+  Connection:System.Data.IDbConnection
+  Parameters:System.Data.IDataParameterCollection
+  Transaction:System.Data.IDbTransaction
+  
+  ExecuteNonQuery():Integer
+  Prepare()
+}
+System.Data.IDbCommand <|.. System.Data.SqlClient.SqlCommand
+System.Data.IDbCommand <|.. System.Data.OleDb.OleDbCommand
+
+interface System.Data.IDataParameterCollection
+System.Data.IDataParameterCollection <|.. System.Data.SqlClient.SqlParameterCollection
+System.Data.IDataParameterCollection <|.. System.Data.OleDb.OleDbParameterCollection
+
+enum System.Data.ConnectionState {
+  Broken
+  Closed
+  Connecting
+  Executing
+  Fetching
+  Open
+}
+
+
+
+System.Data.IDbConnection --> System.Data.IDbTransaction:BeginTransaction
+System.Data.IDbConnection *-- System.Data.ConnectionState
+System.Data.IDbCommand *-- System.Data.IDbConnection
+System.Data.IDbCommand *-- System.Data.IDataParameterCollection
+System.Data.IDbCommand *-- System.Data.IDbTransaction
+System.Data.Common.DbDataAdapter *-- System.Data.IDbCommand
+
+@enduml

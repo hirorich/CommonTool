@@ -1,0 +1,83 @@
+@startuml DbControll.png
+class DB.DbStrage {
+  - {field} dbcontrollers:Dictionary(Of String, DB.DbController) = Nothing
+
+  # {static} New()
+  # Add(dbname:String, connection:IDbConnection):Boolean
+  + Remove(dbname:String):Boolean
+  + Exist(dbname:String):Boolean
+  # CreateDbController(dbname:String):DB.DbController
+}
+
+class DB.SqlStrage {
+  - {static} instance:DB.DbStrage = Nothing
+
+  - {static} New()
+  + {static} CreateInstance():DB.DbStrage
+  + Add(dbname:String, connection:SqlConnection):Boolean
+  + CreateDbController(dbname:String):DB.SqlController
+}
+
+class DB.OleDbStrage {
+  - {static} instance:DB.OleDbStrage = Nothing
+
+  - {static} New()
+  + {static} CreateInstance():DB.OleDbStrage
+  + Add(dbname:String, connection:OleDbConnection):Boolean
+  + CreateDbController(dbname:String):DB.OleDbController
+}
+
+class DB.DbController {
+  - dbname:String = String.Empty
+  # connection:IDbConnection = Nothing
+  # transaction:IDbTransaction = Nothing
+
+  # {static} New(dbname:String, connection:IDbConnection)
+  + Open():Boolean
+  + Close():Boolean
+  + State():System.Data.ConnectionState
+  + BeginTransaction():Boolean
+  + Commit():Boolean
+  + Rollback():Boolean
+  # SearchRecord(command:IDbCommand):Datatable
+  # UpdateRecord(dataadapter:DbDataAdapter):Integer
+}
+
+class DB.SqlController {
+
+  ~ {static} New(dbname:String, connection:SqlConnection)
+  + Select(query:String):Datatable
+  + Select(query:String, parameters:SqlParameterCollection):Datatable
+  + Insert(query:String):Integer
+  + Insert(query:String, parameters:SqlParameterCollection):Integer
+  + Delete(query:String):Integer
+  + Delete(query:String, parameters:SqlParameterCollection):Integer
+  + Update(query:String):Integer
+  + Update(query:String, parameters:SqlParameterCollection):Integer
+  - UpdateRecord(command:SqlCommand):Integer
+}
+
+class DB.OleDbController {
+
+  ~ {static} New(dbname:String, connection:OleDbConnection)
+  + Select(query:String):Datatable
+  + Select(query:String, parameters:OleDbParameterCollection):Datatable
+  + Insert(query:String):Integer
+  + Insert(query:String, parameters:OleDbParameterCollection):Integer
+  + Delete(query:String):Integer
+  + Delete(query:String, parameters:OleDbParameterCollection):Integer
+  + Update(query:String):Integer
+  + Update(query:String, parameters:OleDbParameterCollection):Integer
+  - UpdateRecord(command:OleDbCommand):Integer
+}
+
+DB.DbStrage <|-- DB.SqlStrage
+DB.DbStrage <|-- DB.OleDbStrage
+DB.DbController <|-- DB.SqlController
+DB.DbController <|-- DB.OleDbController
+
+DB.DbStrage "1" *-- "*" DB.DbController
+DB.SqlStrage --> DB.SqlController:CreateDbController
+DB.OleDbStrage --> DB.OleDbController:CreateDbController
+
+@enduml
