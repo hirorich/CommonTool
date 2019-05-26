@@ -8,27 +8,53 @@ class System.Runtime.InteropServices.Marshal {
   + {static} ReleaseComObject(Object):Integer
 }
 
-class Excel.Book {
+class Excel.BookReader {
+  - {static} instance:
+
+  - {static} New()
+  + {static} CreateInstance():
+  + CreateBook(filename:string):Excel.BookController
+  + OpenBook(filename:string):Excel.BookController
+  + CloseBook(Excel.BookController):Boolean
+}
+
+class Excel.BookController {
   - bookname:String = String.Empty
   - workbook:Microsoft.Office.Interop.Excel.Workbook = Nothing
   - worksheets:Microsoft.Office.Interop.Excel.Worksheets = Nothing
-  - {field} sheetlist:ArrayList(Of Excel.Sheet) = Nothing
+  - {field} sheetlist:ArrayList(Of Excel.SheetController) = Nothing
   
+  ~ {static} New(workbook:Microsoft.Office.Interop.Excel.Workbook)
+  + SelectSheet(sheetname:String)Excel.SheetController
+  + CreateSheet(sheetname:String):Boolean
+  + DeleteSheet(sheetname:String):Boolean
+  + CopySheet(sheet:Excel.SheetController, sheetname:String):Boolean
+  + RenameSheet(sheetname:String):Boolean
+  + ExistSheet(sheetname:String):Boolean
+  + GetSheetNameList():List(Of String)
   + Dispose()
 }
-System.IDisposable <|.. Excel.Book
+System.IDisposable <|.. Excel.BookController
 
-class Excel.Sheet {
+class Excel.SheetController {
   - sheetname:String = String.Empty
   - worksheet:Microsoft.Office.Interop.Excel.Worksheet = Nothing
   
+  ~ {static} New(worksheet:Microsoft.Office.Interop.Excel.Worksheet)
+  + Write(datatable:DataTable, rowstart:Integer, colstart:Integer, header:Boolean):Boolean
+  + Write(dataview:DataView, rowstart:Integer, colstart:Integer, header:Boolean):Boolean
+  + Write(text:String, rowno:Integer, colno:Integer):Boolean
+  + Read(rowstart:Integer, colstart:Integer, rowend:Integer, colend:Integer, header:Boolean):DataTable
+  + Read(rowno:Integer, colno:Integer):String
   + Dispose()
 }
-System.IDisposable <|.. Excel.Sheet
+System.IDisposable <|.. Excel.SheetController
 
-Excel.Book *-- Excel.Sheet
+Excel.BookController *-- Excel.SheetController
 
-System.Runtime.InteropServices.Marshal <-- Excel.Book:Dispose
-System.Runtime.InteropServices.Marshal <-- Excel.Sheet:Dispose
+Excel.BookController <-- Excel.BookReader:CreateBook
+Excel.BookController <-- Excel.BookReader:OpenBook
+System.Runtime.InteropServices.Marshal <-- Excel.BookController:Dispose
+System.Runtime.InteropServices.Marshal <-- Excel.SheetController:Dispose
 
 @enduml
