@@ -58,14 +58,14 @@ class DB.SqlController {
 
   ~ {static} New(connection:SqlConnection)
   # NewDbDataAdapter():System.Data.Common.DbDataAdapter
-  + Select(query:String):Datatable
-  + Select(query:String, parameters:SqlParameterCollection):Datatable
-  + Insert(query:String):Integer
-  + Insert(query:String, parameters:SqlParameterCollection):Integer
-  + Delete(query:String):Integer
-  + Delete(query:String, parameters:SqlParameterCollection):Integer
-  + Update(query:String):Integer
-  + Update(query:String, parameters:SqlParameterCollection):Integer
+  + SelectData(query:String):Datatable
+  + SelectData(query:String, parameters:SqlParameterCollection):Datatable
+  + InsertData(query:String):Integer
+  + InsertData(query:String, parameters:SqlParameterCollection):Integer
+  + DeleteData(query:String):Integer
+  + DeleteData(query:String, parameters:SqlParameterCollection):Integer
+  + UpdateData(query:String):Integer
+  + UpdateData(query:String, parameters:SqlParameterCollection):Integer
 }
 DB.DbController <|-- DB.SqlController
 
@@ -73,14 +73,14 @@ class DB.OleDbController {
 
   ~ {static} New(connection:OleDbConnection)
   # NewDbDataAdapter():System.Data.Common.DbDataAdapter
-  + Select(query:String):Datatable
-  + Select(query:String, parameters:OleDbParameterCollection):Datatable
-  + Insert(query:String):Integer
-  + Insert(query:String, parameters:OleDbParameterCollection):Integer
-  + Delete(query:String):Integer
-  + Delete(query:String, parameters:OleDbParameterCollection):Integer
-  + Update(query:String):Integer
-  + Update(query:String, parameters:OleDbParameterCollection):Integer
+  + SelectData(query:String):Datatable
+  + SelectData(query:String, parameters:OleDbParameterCollection):Datatable
+  + InsertData(query:String):Integer
+  + InsertData(query:String, parameters:OleDbParameterCollection):Integer
+  + DeleteData(query:String):Integer
+  + DeleteData(query:String, parameters:OleDbParameterCollection):Integer
+  + UpdateData(query:String):Integer
+  + UpdateData(query:String, parameters:OleDbParameterCollection):Integer
 }
 DB.DbController <|-- DB.OleDbController
 
