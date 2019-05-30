@@ -13,7 +13,7 @@ class System.Runtime.InteropServices.Marshal {
 class Excel.BookReader {
   - {static} instance:
 
-  - {static} New()
+  - New()
   + {static} CreateInstance():
   + CreateBook(filename:string):Excel.BookController
   + OpenBook(filename:string):Excel.BookController
@@ -26,7 +26,7 @@ class Excel.BookController {
   - worksheets:Microsoft.Office.Interop.Excel.Worksheets = Nothing
   - {field} sheetlist:ArrayList(Of Excel.SheetController) = Nothing
   
-  ~ {static} New(workbook:Microsoft.Office.Interop.Excel.Workbook)
+  ~ New(workbook:Microsoft.Office.Interop.Excel.Workbook)
   + SelectSheet(sheetname:String)Excel.SheetController
   + CreateSheet(sheetname:String):Boolean
   + DeleteSheet(sheetname:String):Boolean
@@ -42,7 +42,7 @@ class Excel.SheetController {
   - sheetname:String = String.Empty
   - worksheet:Microsoft.Office.Interop.Excel.Worksheet = Nothing
   
-  ~ {static} New(worksheet:Microsoft.Office.Interop.Excel.Worksheet)
+  ~ New(worksheet:Microsoft.Office.Interop.Excel.Worksheet)
   + Write(datatable:DataTable, rowstart:Integer, colstart:Integer, header:Boolean):Boolean
   + Write(dataview:DataView, rowstart:Integer, colstart:Integer, header:Boolean):Boolean
   + Write(text:String, rowno:Integer, colno:Integer):Boolean
