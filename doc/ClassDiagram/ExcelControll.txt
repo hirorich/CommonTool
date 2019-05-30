@@ -5,7 +5,9 @@ interface System.IDisposable {
 }
 
 class System.Runtime.InteropServices.Marshal {
+  + {static} IsComObject(Object):Boolean
   + {static} ReleaseComObject(Object):Integer
+  + {static} FinalReleaseComObject(Object):Integer
 }
 
 class Excel.BookReader {
