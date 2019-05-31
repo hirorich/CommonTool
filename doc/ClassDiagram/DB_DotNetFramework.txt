@@ -1,25 +1,25 @@
 @startuml DB_DotNetFramework.png
 
 interface System.IDisposable {
-  Dispose()
+  {abstract} Dispose()
 }
 
 interface System.Data.IDbConnection {
   State:System.Data.ConnectionState
 
-  BeginTransaction():System.Data.IDbTransaction
-  Open()
-  Close()
-  Dispose()
+  {abstract} BeginTransaction():System.Data.IDbTransaction
+  {abstract} Open()
+  {abstract} Close()
+  {abstract} Dispose()
 }
 System.IDisposable <|.. System.Data.IDbConnection
 System.Data.IDbConnection <|.. System.Data.SqlClient.SqlConnection
 System.Data.IDbConnection <|.. System.Data.OleDb.OleDbConnection
 
 interface System.Data.IDbTransaction {
-  Commit()
-  Rollback()
-  Dispose()
+  {abstract} Commit()
+  {abstract} Rollback()
+  {abstract} Dispose()
 }
 System.IDisposable <|.. System.Data.IDbTransaction
 System.Data.IDbTransaction <|.. System.Data.SqlClient.SqlTransaction
@@ -41,9 +41,9 @@ interface System.Data.IDbCommand {
   Parameters:System.Data.IDataParameterCollection
   Transaction:System.Data.IDbTransaction
   
-  ExecuteNonQuery():Integer
-  Prepare()
-  Dispose()
+  {abstract} ExecuteNonQuery():Integer
+  {abstract} Prepare()
+  {abstract} Dispose()
 }
 System.IDisposable <|.. System.Data.IDbCommand
 System.Data.IDbCommand <|.. System.Data.SqlClient.SqlCommand

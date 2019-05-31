@@ -1,7 +1,7 @@
 @startuml ConnectionControll.png
 
 interface System.IDisposable {
-  + Dispose()
+  + {abstract} Dispose()
 }
 
 class DB.ConnectionManager {

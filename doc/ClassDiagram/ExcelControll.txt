@@ -1,7 +1,7 @@
 @startuml ExcelControll.png
 
 interface System.IDisposable {
-  + Dispose()
+  + {abstract} Dispose()
 }
 
 class System.Runtime.InteropServices.Marshal {
