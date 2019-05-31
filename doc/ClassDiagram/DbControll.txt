@@ -4,44 +4,44 @@ interface System.IDisposable {
   + Dispose()
 }
 
-class DB.DbStrage {
-  - {field} dbcontrollers:Dictionary(Of String, DB.DbController)
+class DB.ConnectionManager {
+  - {field} dbcontrollers:Dictionary(Of String, DB.ConnectionController)
 
   # New()
   # Add(dbname:String, connection:IDbConnection):Boolean
   + Remove(dbname:String):Boolean
   + Exists(dbname:String):Boolean
-  # CreateDbController(dbname:String):DB.DbController
+  # CreateDbController(dbname:String):DB.ConnectionController
   + Dispose()
 }
-System.IDisposable <|.. DB.DbStrage
+System.IDisposable <|.. DB.ConnectionManager
 
-class DB.SqlStrage {
-  - {static} instance:DB.SqlStrage
+class DB.SqlManager {
+  - {static} instance:DB.SqlManager
 
   - New()
-  + {static} CreateInstance():DB.SqlStrage
+  + {static} CreateInstance():DB.SqlManager
   + Add(dbname:String, connection:SqlConnection):Boolean
   + CreateDbController(dbname:String):DB.SqlController
 }
-DB.DbStrage <|-- DB.SqlStrage
+DB.ConnectionManager <|-- DB.SqlManager
 
-class DB.OleDbStrage {
-  - {static} instance:DB.OleDbStrage
+class DB.OleDbManager {
+  - {static} instance:DB.OleDbManager
 
   - New()
-  + {static} CreateInstance():DB.OleDbStrage
+  + {static} CreateInstance():DB.OleDbManager
   + Add(dbname:String, connection:OleDbConnection):Boolean
   + CreateDbController(dbname:String):DB.OleDbController
 }
-DB.DbStrage <|-- DB.OleDbStrage
+DB.ConnectionManager <|-- DB.OleDbManager
 
-abstract class DB.DbController {
+abstract class DB.ConnectionController {
   - connection:IDbConnection
   - transaction:IDbTransaction = Nothing
 
   # New(connection:IDbConnection)
-  # {abstract} NewDbDataAdapter():System.Data.Common.DbDataAdapter
+  # {abstract} CreateDbDataAdapter():System.Data.Common.DbDataAdapter
   + Open():Boolean
   + Close():Boolean
   + State():System.Data.ConnectionState
@@ -52,43 +52,33 @@ abstract class DB.DbController {
   # UpdateRecord(command:IDbCommand):Integer
   + Dispose()
 }
-System.IDisposable <|.. DB.DbController
+System.IDisposable <|.. DB.ConnectionController
 
 class DB.SqlController {
 
   ~ New(connection:SqlConnection)
-  # NewDbDataAdapter():System.Data.Common.DbDataAdapter
+  # CreateDbDataAdapter():System.Data.Common.DbDataAdapter
   + SelectRecord(query:String):Datatable
   + SelectRecord(query:String, parameters:SqlParameterCollection):Datatable
-  + InsertRecord(query:String):Integer
-  + InsertRecord(query:String, parameters:SqlParameterCollection):Integer
-  + DeleteRecord(query:String):Integer
-  + DeleteRecord(query:String, parameters:SqlParameterCollection):Integer
   + UpdateRecord(query:String):Integer
   + UpdateRecord(query:String, parameters:SqlParameterCollection):Integer
-  - UpdateData(query:String, parameters:SqlParameterCollection):Integer
 }
-DB.DbController <|-- DB.SqlController
+DB.ConnectionController <|-- DB.SqlController
 
 class DB.OleDbController {
 
   ~ New(connection:OleDbConnection)
-  # NewDbDataAdapter():System.Data.Common.DbDataAdapter
+  # CreateDbDataAdapter():System.Data.Common.DbDataAdapter
   + SelectRecord(query:String):Datatable
   + SelectRecord(query:String, parameters:OleDbParameterCollection):Datatable
-  + InsertRecord(query:String):Integer
-  + InsertRecord(query:String, parameters:OleDbParameterCollection):Integer
-  + DeleteRecord(query:String):Integer
-  + DeleteRecord(query:String, parameters:OleDbParameterCollection):Integer
   + UpdateRecord(query:String):Integer
   + UpdateRecord(query:String, parameters:OleDbParameterCollection):Integer
-  - UpdateData(query:String, parameters:OleDbParameterCollection):Integer
 }
-DB.DbController <|-- DB.OleDbController
+DB.ConnectionController <|-- DB.OleDbController
 
-DB.DbStrage "1" *-- "*" DB.DbController
+DB.ConnectionManager "1" *-- "*" DB.ConnectionController
 
-DB.SqlStrage --> DB.SqlController:CreateDbController
-DB.OleDbStrage --> DB.OleDbController:CreateDbController
+DB.SqlManager --> DB.SqlController:CreateDbController
+DB.OleDbManager --> DB.OleDbController:CreateDbController
 
 @enduml

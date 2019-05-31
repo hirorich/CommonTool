@@ -1,12 +1,12 @@
 ﻿Namespace DB
 
-    Public MustInherit Class DbStrage
+    Public MustInherit Class ConnectionManager
         Implements IDisposable
 
-        Private dbcontrollers As Dictionary(Of String, DbController)
+        Private dbcontrollers As Dictionary(Of String, ConnectionController)
 
         Protected Friend Sub New()
-            dbcontrollers = New Dictionary(Of String, DbController)
+            dbcontrollers = New Dictionary(Of String, ConnectionController)
         End Sub
 
         Protected Function Add(ByVal dbname As String, ByVal connection As IDbConnection) As Boolean
@@ -21,7 +21,7 @@
 
         End Function
 
-        Protected Function CreateDbController(ByVal dbname As String) As DbController
+        Protected Function CreateDbController(ByVal dbname As String) As ConnectionController
 
         End Function
 

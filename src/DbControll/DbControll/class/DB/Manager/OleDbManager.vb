@@ -3,15 +3,15 @@
 Namespace DB
 
     ''' <summary>
-    ''' OleDb に対する接続情報保管クラス
+    ''' OleDb に対する接続情報管理クラス
     ''' </summary>
-    Public Class OleDbStrage
-        Inherits DbStrage
+    Public Class OleDbManager
+        Inherits ConnectionManager
 
         ''' <summary>
         ''' Singleton パターンのインスタンス
         ''' </summary>
-        Private Shared instance As OleDbStrage
+        Private Shared instance As OleDbManager
 
         Private Sub New()
         End Sub
@@ -20,11 +20,11 @@ Namespace DB
         ''' インスタンスの生成
         ''' </summary>
         ''' <returns>インスタンス</returns>
-        Public Shared Function CreateInstance() As OleDbStrage
-            If OleDbStrage.instance Is Nothing Then
-                OleDbStrage.instance = New OleDbStrage()
+        Public Shared Function CreateInstance() As OleDbManager
+            If OleDbManager.instance Is Nothing Then
+                OleDbManager.instance = New OleDbManager()
             End If
-            Return OleDbStrage.instance
+            Return OleDbManager.instance
         End Function
 
         ''' <summary>

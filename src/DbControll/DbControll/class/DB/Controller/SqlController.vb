@@ -7,7 +7,7 @@ Namespace DB
     ''' SQL Server に対するレコード操作クラス
     ''' </summary>
     Public Class SqlController
-        Inherits DbController
+        Inherits ConnectionController
 
         ''' <summary>
         ''' 接続情報を指定してインスタンス生成
@@ -18,10 +18,10 @@ Namespace DB
         End Sub
 
         ''' <summary>
-        ''' 親クラスで検索に使用するインスタンス生成
+        ''' 親クラスでレコード検索に使用するDbDataAdapterインスタンス生成
         ''' </summary>
         ''' <returns>SqlDataAdapter</returns>
-        Protected Overrides Function NewDbDataAdapter() As DbDataAdapter
+        Protected Overrides Function CreateDbDataAdapter() As DbDataAdapter
             Return New SqlDataAdapter()
         End Function
 
@@ -46,42 +46,12 @@ Namespace DB
         End Function
 
         ''' <summary>
-        ''' クエリを指定しレコードを追加する
-        ''' </summary>
-        ''' <param name="query">クエリ</param>
-        ''' <param name="parameters">パラメータ</param>
-        ''' <returns>追加したレコード数</returns>
-        Public Function InsertRecord(ByVal query As String, Optional ByVal parameters As SqlParameterCollection = Nothing) As Integer
-            Return Me.UpdateData(query, parameters)
-        End Function
-
-        ''' <summary>
-        ''' クエリを指定しレコードを削除する
-        ''' </summary>
-        ''' <param name="query">クエリ</param>
-        ''' <param name="parameters">パラメータ</param>
-        ''' <returns>削除したレコード数</returns>
-        Public Function DeleteRecord(ByVal query As String, Optional ByVal parameters As SqlParameterCollection = Nothing) As Integer
-            Return Me.UpdateData(query, parameters)
-        End Function
-
-        ''' <summary>
         ''' クエリを指定しレコードを更新する
         ''' </summary>
         ''' <param name="query">クエリ</param>
         ''' <param name="parameters">パラメータ</param>
         ''' <returns>更新したレコード数</returns>
         Public Overloads Function UpdateRecord(ByVal query As String, Optional ByVal parameters As SqlParameterCollection = Nothing) As Integer
-            Return Me.UpdateData(query, parameters)
-        End Function
-
-        ''' <summary>
-        ''' クエリを指定しレコードを更新する
-        ''' </summary>
-        ''' <param name="query">クエリ</param>
-        ''' <param name="parameters">パラメータ</param>
-        ''' <returns>更新したレコード数</returns>
-        Private Function UpdateData(ByVal query As String, ByVal parameters As SqlParameterCollection) As Integer
             Dim command As SqlCommand = New SqlCommand
 
             ' 実行するクエリとパラメータを指定

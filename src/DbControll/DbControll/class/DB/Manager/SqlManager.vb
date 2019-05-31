@@ -3,15 +3,15 @@
 Namespace DB
 
     ''' <summary>
-    ''' SQL Server に対する接続情報保管クラス
+    ''' SQL Server に対する接続情報管理クラス
     ''' </summary>
-    Public Class SqlStrage
-        Inherits DbStrage
+    Public Class SqlManager
+        Inherits ConnectionManager
 
         ''' <summary>
         ''' Singleton パターンのインスタンス
         ''' </summary>
-        Private Shared instance As SqlStrage
+        Private Shared instance As SqlManager
 
         Private Sub New()
         End Sub
@@ -20,11 +20,11 @@ Namespace DB
         ''' インスタンスの生成
         ''' </summary>
         ''' <returns>インスタンス</returns>
-        Public Shared Function CreateInstance() As SqlStrage
-            If SqlStrage.instance Is Nothing Then
-                SqlStrage.instance = New SqlStrage()
+        Public Shared Function CreateInstance() As SqlManager
+            If SqlManager.instance Is Nothing Then
+                SqlManager.instance = New SqlManager()
             End If
-            Return SqlStrage.instance
+            Return SqlManager.instance
         End Function
 
         ''' <summary>

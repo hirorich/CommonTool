@@ -2,7 +2,7 @@
 
 Namespace DB
 
-    Public MustInherit Class DbController
+    Public MustInherit Class ConnectionController
         Implements IDisposable
 
         Private connection As IDbConnection
@@ -19,7 +19,7 @@ Namespace DB
             Me.transaction = Nothing
         End Sub
 
-        Protected MustOverride Function NewDbDataAdapter() As DbDataAdapter
+        Protected MustOverride Function CreateDbDataAdapter() As DbDataAdapter
 
         Public Function Open() As Boolean
 

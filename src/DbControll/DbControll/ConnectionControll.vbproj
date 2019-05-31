@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7C957018-3AA1-4301-9810-AB1A44D6E744}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DbControll</RootNamespace>
-    <AssemblyName>DbControll</AssemblyName>
+    <RootNamespace>ConnectionControll</RootNamespace>
+    <AssemblyName>ConnectionControll</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -19,7 +19,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>DbControll.xml</DocumentationFile>
+    <DocumentationFile>ConnectionControll.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +28,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>DbControll.xml</DocumentationFile>
+    <DocumentationFile>ConnectionControll.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -64,12 +64,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="class\DB\Controller\DbController.vb" />
+    <Compile Include="class\DB\Controller\ConnectionController.vb" />
     <Compile Include="class\DB\Controller\OleDbController.vb" />
     <Compile Include="class\DB\Controller\SqlController.vb" />
-    <Compile Include="class\DB\Strage\DbStrage.vb" />
-    <Compile Include="class\DB\Strage\OleDbStrage.vb" />
-    <Compile Include="class\DB\Strage\SqlStrage.vb" />
+    <Compile Include="class\DB\Manager\ConnectionManager.vb" />
+    <Compile Include="class\DB\Manager\OleDbManager.vb" />
+    <Compile Include="class\DB\Manager\SqlManager.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
