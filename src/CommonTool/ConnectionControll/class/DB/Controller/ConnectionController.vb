@@ -165,7 +165,26 @@ Namespace DB
         ''' <param name="command">実施コマンド</param>
         ''' <returns>検索したレコード</returns>
         Protected Function SearchRecord(ByVal command As IDbCommand) As DataTable
+            Dim adapter As DbDataAdapter
 
+            SearchRecord = New DataTable
+
+            Try
+
+                ' 実行準備
+                Call Me.Prepare(command)
+                adapter = Me.CreateDbDataAdapter()
+                adapter.SelectCommand = command
+
+                ' コマンド実行
+                Call adapter.Fill(SearchRecord)
+
+            Catch ex As Exception
+                Call LogTool.WriteLog(New Exception("レコードの検索に失敗しました。", ex))
+                Call Me.transaction.Rollback()
+                Call SearchRecord.Dispose()
+                SearchRecord = Nothing
+            End Try
         End Function
 
         ''' <summary>
@@ -174,8 +193,37 @@ Namespace DB
         ''' <param name="command">実施コマンド</param>
         ''' <returns>更新したレコード数</returns>
         Protected Function UpdateRecord(ByVal command As IDbCommand) As Integer
+            Try
 
+                ' 実行準備
+                Call Me.Prepare(command)
+
+                ' コマンド実行
+                UpdateRecord = command.ExecuteNonQuery()
+
+            Catch ex As Exception
+                Call LogTool.WriteLog(New Exception("レコードの更新に失敗しました。", ex))
+                Call Me.transaction.Rollback()
+                UpdateRecord = 0
+            End Try
         End Function
+
+        ''' <summary>
+        ''' コマンドの実行準備
+        ''' </summary>
+        ''' <param name="command">実施コマンド</param>
+        Private Sub Prepare(ByRef command As IDbCommand)
+
+            ' 接続情報付与
+            command.Connection = Me.connection
+            If Me.transaction IsNot Nothing Then
+                command.Transaction = Me.transaction
+            End If
+
+            ' 準備済みコマンド作成
+            Call command.Prepare()
+
+        End Sub
 
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' 重複する呼び出しを検出するには

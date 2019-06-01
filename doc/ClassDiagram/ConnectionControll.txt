@@ -50,6 +50,7 @@ abstract class DB.ConnectionController {
   + Rollback():Boolean
   # SearchRecord(command:IDbCommand):Datatable
   # UpdateRecord(command:IDbCommand):Integer
+  - Prepare(command:IDbCommand)
   + Dispose()
 }
 System.IDisposable <|.. DB.ConnectionController
