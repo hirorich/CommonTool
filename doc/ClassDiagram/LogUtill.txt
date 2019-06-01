@@ -12,7 +12,7 @@ interface System.IDisposable {
 interface LOG.ILogUtill {
   + {abstract} WriteLog(message:String)
 }
-System.IDisposable <.. LOG.ILogUtill
+System.IDisposable <-- LOG.ILogUtill
 
 class LOG.LogUtill {
   + {static} LogWriter:LOG.ILogUtill
