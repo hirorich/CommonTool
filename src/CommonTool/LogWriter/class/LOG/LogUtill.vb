@@ -37,15 +37,23 @@
         Public Shared Sub WriteLog(ByVal message As String)
             Dim tool As ILogUtill
 
-            ' 実装クラスの指定有無によって使用するインスタンスを切り替える
-            If LogUtill.writer IsNot Nothing Then
-                tool = LogUtill.writer
-            Else
-                tool = DefaultLogUtillImpl.CreateInstance()
-            End If
+            Try
 
-            ' message の内容をログ出力する
-            Call tool.WriteLog(message)
+                ' 実装クラスの指定有無によって使用するインスタンスを切り替える
+                If LogUtill.writer IsNot Nothing Then
+                    tool = LogUtill.writer
+                Else
+                    tool = DefaultLogUtillImpl.CreateInstance()
+                End If
+
+                ' message の内容をログ出力する
+                Call tool.WriteLog(message)
+
+            Catch ex As Exception
+
+                ' 例外は潰す
+
+            End Try
 
         End Sub
 
