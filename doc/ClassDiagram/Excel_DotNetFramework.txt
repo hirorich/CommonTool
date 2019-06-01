@@ -7,7 +7,7 @@ Microsoft.Office.Interop.Excel.Workbook <|.. Microsoft.Office.Interop.Excel.Work
 
 interface Microsoft.Office.Interop.Excel.Sheets
 interface Microsoft.Office.Interop.Excel.Worksheets
-Microsoft.Office.Interop.Excel.Sheets <|.. Microsoft.Office.Interop.Excel.Worksheets
+Microsoft.Office.Interop.Excel.Sheets <|-- Microsoft.Office.Interop.Excel.Worksheets
 
 interface Microsoft.Office.Interop.Excel.Worksheet
 Microsoft.Office.Interop.Excel.Worksheet <|.. Microsoft.Office.Interop.Excel.WorksheetClass

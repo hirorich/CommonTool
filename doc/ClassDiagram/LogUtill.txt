@@ -12,7 +12,7 @@ interface System.IDisposable {
 interface LOG.ILogUtill {
   + {abstract} WriteLog(message:String)
 }
-System.IDisposable <-- LOG.ILogUtill
+System.IDisposable <|-- LOG.ILogUtill
 
 class LOG.LogUtill {
   + {static} LogWriter:LOG.ILogUtill
@@ -31,12 +31,12 @@ class LOG.DefaultLogUtillImpl {
   + WriteLog(message:String)
   + Dispose()
 }
-LOG.ILogUtill <.. LOG.DefaultLogUtillImpl
+LOG.ILogUtill <|.. LOG.DefaultLogUtillImpl
 
 class OtherClassImpl {
   + WriteLog(message:String)
   + Dispose()
 }
-LOG.ILogUtill <.. OtherClassImpl
+LOG.ILogUtill <|.. OtherClassImpl
 
 @enduml

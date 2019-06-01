@@ -10,18 +10,16 @@ interface System.Data.IDbConnection {
   {abstract} BeginTransaction():System.Data.IDbTransaction
   {abstract} Open()
   {abstract} Close()
-  {abstract} Dispose()
 }
-System.IDisposable <|.. System.Data.IDbConnection
+System.IDisposable <|-- System.Data.IDbConnection
 System.Data.IDbConnection <|.. System.Data.SqlClient.SqlConnection
 System.Data.IDbConnection <|.. System.Data.OleDb.OleDbConnection
 
 interface System.Data.IDbTransaction {
   {abstract} Commit()
   {abstract} Rollback()
-  {abstract} Dispose()
 }
-System.IDisposable <|.. System.Data.IDbTransaction
+System.IDisposable <|-- System.Data.IDbTransaction
 System.Data.IDbTransaction <|.. System.Data.SqlClient.SqlTransaction
 System.Data.IDbTransaction <|.. System.Data.OleDb.OleDbTransaction
 
@@ -43,9 +41,8 @@ interface System.Data.IDbCommand {
   
   {abstract} ExecuteNonQuery():Integer
   {abstract} Prepare()
-  {abstract} Dispose()
 }
-System.IDisposable <|.. System.Data.IDbCommand
+System.IDisposable <|-- System.Data.IDbCommand
 System.Data.IDbCommand <|.. System.Data.SqlClient.SqlCommand
 System.Data.IDbCommand <|.. System.Data.OleDb.OleDbCommand
 
