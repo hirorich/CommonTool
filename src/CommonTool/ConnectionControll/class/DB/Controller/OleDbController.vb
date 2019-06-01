@@ -26,7 +26,7 @@ Namespace DB
         End Function
 
         ''' <summary>
-        ''' クエリを指定しレコードを検索する
+        ''' クエリを指定してレコードを検索する
         ''' </summary>
         ''' <param name="query">クエリ</param>
         ''' <param name="parameters">パラメータ</param>
@@ -46,7 +46,7 @@ Namespace DB
         End Function
 
         ''' <summary>
-        ''' クエリを指定しレコードを更新する
+        ''' クエリを指定してレコードを更新する
         ''' </summary>
         ''' <param name="query">クエリ</param>
         ''' <param name="parameters">パラメータ</param>

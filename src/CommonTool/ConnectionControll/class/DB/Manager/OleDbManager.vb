@@ -32,7 +32,7 @@ Namespace DB
         ''' </summary>
         ''' <param name="dbname">接続先</param>
         ''' <param name="connection">接続情報</param>
-        ''' <returns>True:追加成功 /False:追加失敗</returns>
+        ''' <returns>True:成功 / False:失敗</returns>
         Public Overloads Function Add(ByVal dbname As String, ByVal connection As OleDbConnection) As Boolean
             Return MyBase.Add(dbname, connection)
         End Function
