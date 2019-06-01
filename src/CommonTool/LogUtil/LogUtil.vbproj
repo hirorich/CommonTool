@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{65E92635-48B7-44E3-982D-76F0FBE519E3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>LogWriter</RootNamespace>
-    <AssemblyName>LogWriter</AssemblyName>
+    <RootNamespace>LogUtil</RootNamespace>
+    <AssemblyName>LogUtil</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -19,7 +19,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>LogWriter.xml</DocumentationFile>
+    <DocumentationFile>LogUtil.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +28,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>LogWriter.xml</DocumentationFile>
+    <DocumentationFile>LogUtil.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -64,9 +64,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="class\LOG\DefaultLogUtillImpl.vb" />
-    <Compile Include="class\LOG\ILogUtill.vb" />
-    <Compile Include="class\LOG\LogUtill.vb" />
+    <Compile Include="class\LOG\DefaultLogToolImpl.vb" />
+    <Compile Include="class\LOG\ILogTool.vb" />
+    <Compile Include="class\LOG\LogTool.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

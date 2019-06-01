@@ -3,7 +3,7 @@
     ''' <summary>
     ''' ログ出力インタフェース
     ''' </summary>
-    Public Interface ILogUtill
+    Public Interface ILogTool
         Inherits IDisposable
 
         ''' <summary>

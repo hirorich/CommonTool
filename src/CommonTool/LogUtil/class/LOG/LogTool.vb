@@ -3,26 +3,26 @@
     ''' <summary>
     ''' ログ出力共通クラス
     ''' </summary>
-    Public Class LogUtill
+    Public Class LogTool
 
         ''' <summary>
         ''' ログ出力実装クラス
         ''' </summary>
-        Private Shared writer As ILogUtill
+        Private Shared writer As ILogTool
 
         ''' <summary>
         ''' ログ出力実装クラス
         ''' </summary>
-        Public Shared WriteOnly Property LogWriter As ILogUtill
-            Set(value As ILogUtill)
+        Public Shared WriteOnly Property LogWriter As ILogTool
+            Set(value As ILogTool)
 
                 ' 実装クラスを既に保持する場合解放する
-                If LogUtill.writer IsNot Nothing Then
-                    Call LogUtill.writer.Dispose()
+                If LogTool.writer IsNot Nothing Then
+                    Call LogTool.writer.Dispose()
                 End If
 
                 ' 実装クラスを指定する
-                LogUtill.writer = value
+                LogTool.writer = value
 
             End Set
         End Property
@@ -35,15 +35,15 @@
         ''' </summary>
         ''' <param name="message">出力メッセージ</param>
         Public Shared Sub WriteLog(ByVal message As String)
-            Dim tool As ILogUtill
+            Dim tool As ILogTool
 
             Try
 
                 ' 実装クラスの指定有無によって使用するインスタンスを切り替える
-                If LogUtill.writer IsNot Nothing Then
-                    tool = LogUtill.writer
+                If LogTool.writer IsNot Nothing Then
+                    tool = LogTool.writer
                 Else
-                    tool = DefaultLogUtillImpl.CreateInstance()
+                    tool = DefaultLogToolImpl.CreateInstance()
                 End If
 
                 ' message の内容をログ出力する
@@ -64,7 +64,7 @@
         Public Shared Sub WriteLog(ByVal e As Exception)
 
             ' メッセージ、スタックトレースをログに出力
-            Call LogUtill.WriteLog(e.ToString)
+            Call LogTool.WriteLog(e.ToString)
 
         End Sub
 

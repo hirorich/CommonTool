@@ -3,13 +3,13 @@
     ''' <summary>
     ''' ログ出力実装クラス(Default)
     ''' </summary>
-    Friend Class DefaultLogUtillImpl
-        Implements ILogUtill
+    Friend Class DefaultLogToolImpl
+        Implements ILogTool
 
         ''' <summary>
         ''' Singleton パターンのインスタンス
         ''' </summary>
-        Private Shared instance As DefaultLogUtillImpl
+        Private Shared instance As DefaultLogToolImpl
 
         Private Sub New()
         End Sub
@@ -18,18 +18,18 @@
         ''' インスタンスの生成
         ''' </summary>
         ''' <returns>インスタンス</returns>
-        Friend Shared Function CreateInstance() As DefaultLogUtillImpl
-            If DefaultLogUtillImpl.instance Is Nothing Then
-                DefaultLogUtillImpl.instance = New DefaultLogUtillImpl()
+        Friend Shared Function CreateInstance() As DefaultLogToolImpl
+            If DefaultLogToolImpl.instance Is Nothing Then
+                DefaultLogToolImpl.instance = New DefaultLogToolImpl()
             End If
-            Return DefaultLogUtillImpl.instance
+            Return DefaultLogToolImpl.instance
         End Function
 
         ''' <summary>
         ''' message の内容をログ出力する
         ''' </summary>
         ''' <param name="message">出力メッセージ</param>
-        Public Sub WriteLog(message As String) Implements ILogUtill.WriteLog
+        Public Sub WriteLog(message As String) Implements ILogTool.WriteLog
             Throw New NotImplementedException()
         End Sub
 

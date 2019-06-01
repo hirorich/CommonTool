@@ -9,34 +9,34 @@ interface System.IDisposable {
   + {abstract} Dispose()
 }
 
-interface LOG.ILogUtill {
+interface LOG.ILogTool {
   + {abstract} WriteLog(message:String)
 }
-System.IDisposable <|-- LOG.ILogUtill
+System.IDisposable <|-- LOG.ILogTool
 
-class LOG.LogUtill {
-  + {static} LogWriter:LOG.ILogUtill
+class LOG.LogTool {
+  + {static} LogWriter:LOG.ILogTool
 
   - New()
   + {static} WriteLog(message:String)
   + {static} WriteLog(e:Exception)
 }
-LOG.LogUtill *-- LOG.ILogUtill
+LOG.LogTool *-- LOG.ILogTool
 
-class LOG.DefaultLogUtillImpl {
-  - {static} instance:LOG.DefaultLogUtillImpl
+class LOG.DefaultLogToolImpl {
+  - {static} instance:LOG.DefaultLogToolImpl
 
   - New()
-  ~ {static} CreateInstance():LOG.DefaultLogUtillImpl
+  ~ {static} CreateInstance():LOG.DefaultLogToolImpl
   + WriteLog(message:String)
   + Dispose()
 }
-LOG.ILogUtill <|.. LOG.DefaultLogUtillImpl
+LOG.ILogTool <|.. LOG.DefaultLogToolImpl
 
-class OtherClassImpl {
+class OtherLogToolImpl {
   + WriteLog(message:String)
   + Dispose()
 }
-LOG.ILogUtill <|.. OtherClassImpl
+LOG.ILogTool <|.. OtherLogToolImpl
 
 @enduml

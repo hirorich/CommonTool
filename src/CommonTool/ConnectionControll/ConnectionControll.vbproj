@@ -106,9 +106,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogWriter\LogWriter.vbproj">
+    <ProjectReference Include="..\LogUtil\LogUtil.vbproj">
       <Project>{65e92635-48b7-44e3-982d-76f0fbe519e3}</Project>
-      <Name>LogWriter</Name>
+      <Name>LogUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
