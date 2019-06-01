@@ -1,36 +1,40 @@
 @startuml LogUtill.png
 
+class System.Exception {
+  + New(message:String, innerException:Exception)
+  + ToString():String
+}
+
 interface System.IDisposable {
   + {abstract} Dispose()
 }
 
 interface LOG.ILogUtill {
   + {abstract} WriteLog(message:String)
-  + {abstract} WriteLog(e:Exception)
 }
 System.IDisposable <.. LOG.ILogUtill
 
 class LOG.LogUtill {
-  - {static} instance:LOG.LogUtill
-  - logtool:LOG.ILogUtill
+  + {static} LogWriter:LOG.ILogUtill
 
   - New()
-  + {static} SetImpl(LOG.ILogUtill)
   + {static} WriteLog(message:String)
   + {static} WriteLog(e:Exception)
 }
 LOG.LogUtill *-- LOG.ILogUtill
 
-class LOG.LogUtillImpl {
+class LOG.DefaultLogUtillImpl {
+  - {static} instance:LOG.DefaultLogUtillImpl
+
+  - New()
+  ~ {static} CreateInstance():LOG.DefaultLogUtillImpl
   + WriteLog(message:String)
-  + WriteLog(e:Exception)
   + Dispose()
 }
-LOG.ILogUtill <.. LOG.LogUtillImpl
+LOG.ILogUtill <.. LOG.DefaultLogUtillImpl
 
 class OtherClassImpl {
   + WriteLog(message:String)
-  + WriteLog(e:Exception)
   + Dispose()
 }
 LOG.ILogUtill <.. OtherClassImpl
