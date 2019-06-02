@@ -1,0 +1,27 @@
+@startuml Common_DotNetFramework.png
+
+interface System.IDisposable {
+  {abstract} Dispose()
+}
+
+class System.Collections.Generic.Dictionary<TKey,TValue> {
+  + {field} Item(TKey):TValue
+
+  + New<TKey,TValue>()
+  + Add(TKey, TValue)
+  + Remove(TKey):Boolean
+  + ContainsKey(TKey):Boolean
+}
+
+class System.Runtime.InteropServices.Marshal {
+  + {static} IsComObject(Object):Boolean
+  + {static} ReleaseComObject(Object):Integer
+  + {static} FinalReleaseComObject(Object):Integer
+}
+
+class System.Exception {
+  + New(message:String, innerException:Exception)
+  + ToString():String
+}
+
+@enduml

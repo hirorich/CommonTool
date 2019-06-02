@@ -1,10 +1,5 @@
 @startuml LogUtill.png
 
-class System.Exception {
-  + New(message:String, innerException:Exception)
-  + ToString():String
-}
-
 interface System.IDisposable {
   + {abstract} Dispose()
 }
