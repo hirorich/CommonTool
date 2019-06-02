@@ -29,7 +29,8 @@
         ''' message の内容をログ出力する
         ''' </summary>
         ''' <param name="message">出力メッセージ</param>
-        Public Sub WriteLog(message As String) Implements ILogTool.WriteLog
+        ''' <param name="parameters">パラメータ</param>
+        Public Sub WriteLog(message As String, Optional ByVal parameters As List(Of Object) = Nothing) Implements ILogTool.WriteLog
             Throw New NotImplementedException()
         End Sub
 

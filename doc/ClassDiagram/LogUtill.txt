@@ -5,16 +5,17 @@ interface System.IDisposable {
 }
 
 interface LOG.ILogTool {
-  + {abstract} WriteLog(message:String)
+  + {abstract} WriteLog(message:String, Optional parameters:List(Of Object))
 }
 System.IDisposable <|-- LOG.ILogTool
 
 class LOG.LogTool {
-  + {static} LogWriter:LOG.ILogTool
+  + {static} LogInstance:LOG.ILogTool
+  + {static} Output:Boolean = True
 
   - New()
-  + {static} WriteLog(message:String)
-  + {static} WriteLog(e:Exception)
+  + {static} WriteLog(message:String, Optional parameters:List(Of Object))
+  + {static} WriteLog(e:Exception, Optional parameters:List(Of Object))
 }
 LOG.LogTool *-- LOG.ILogTool
 
@@ -23,13 +24,13 @@ class LOG.DefaultLogToolImpl {
 
   - New()
   ~ {static} CreateInstance():LOG.DefaultLogToolImpl
-  + WriteLog(message:String)
+  + WriteLog(message:String, Optional parameters:List(Of Object))
   + Dispose()
 }
 LOG.ILogTool <|.. LOG.DefaultLogToolImpl
 
 class OtherLogToolImpl {
-  + WriteLog(message:String)
+  + WriteLog(message:String, Optional parameters:List(Of Object))
   + Dispose()
 }
 LOG.ILogTool <|.. OtherLogToolImpl
