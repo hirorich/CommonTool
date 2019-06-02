@@ -4,11 +4,20 @@ interface System.IDisposable {
   + {abstract} Dispose()
 }
 
+class System.Collections.Generic.Dictionary<TKey,TValue> {
+  + {field} Item(TKey):TValue
+
+  + New<TKey,TValue>()
+  + Add(TKey, TValue)
+  + Remove(TKey):Boolean
+  + ContainsKey(TKey):Boolean
+}
+
 class DB.ConnectionManager {
   - {field} dbcontrollers:Dictionary(Of String, DB.ConnectionController)
 
   # New()
-  # Add(dbname:String, connection:IDbConnection):Boolean
+  # Add(dbname:String, controller:DB.ConnectionController):Boolean
   + Remove(dbname:String):Boolean
   + Exists(dbname:String):Boolean
   # CreateDbController(dbname:String):DB.ConnectionController
@@ -77,6 +86,7 @@ class DB.OleDbController {
 }
 DB.ConnectionController <|-- DB.OleDbController
 
+DB.ConnectionManager *-- System.Collections.Generic.Dictionary
 DB.ConnectionManager "1" *-- "*" DB.ConnectionController
 
 DB.SqlManager --> DB.SqlController:CreateDbController
