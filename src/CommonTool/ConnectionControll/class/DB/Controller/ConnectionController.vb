@@ -93,6 +93,7 @@ Namespace DB
 
                 ' 接続を閉じる
                 Call Me.connection.Close()
+                Call Me.connection.Dispose()
                 Call LogTool.WriteLog(Me.dbname & "の接続を閉じました。")
                 Close = True
 
@@ -277,6 +278,7 @@ Namespace DB
             If Not disposedValue Then
                 If disposing Then
                     ' TODO: マネージド状態を破棄します (マネージド オブジェクト)。
+                    Call Me.Close()
                 End If
 
                 ' TODO: アンマネージド リソース (アンマネージド オブジェクト) を解放し、下の Finalize() をオーバーライドします。

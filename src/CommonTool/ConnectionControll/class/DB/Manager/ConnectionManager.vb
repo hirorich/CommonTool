@@ -110,6 +110,32 @@ Namespace DB
             End Try
         End Function
 
+        ''' <summary>
+        ''' 全ての接続情報を削除
+        ''' </summary>
+        ''' <returns>True:成功 / False:失敗</returns>
+        Public Function Clear() As Boolean
+            Dim keys As List(Of String)
+
+            Try
+
+                ' 接続先一覧取得
+                keys = New List(Of String)
+                keys.AddRange(Me.dbcontrollers.Keys.ToList)
+
+                ' 全ての接続情報を削除
+                For Each key As String In keys
+                    Call Me.Remove(key)
+                Next
+                Call LogTool.WriteLog("全ての接続情報を削除しました。")
+                Clear = True
+
+            Catch ex As Exception
+                Call LogTool.WriteLog(New Exception("削除に失敗した接続情報があります。", ex))
+                Clear = False
+            End Try
+        End Function
+
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' 重複する呼び出しを検出するには
 
@@ -118,6 +144,7 @@ Namespace DB
             If Not disposedValue Then
                 If disposing Then
                     ' TODO: マネージド状態を破棄します (マネージド オブジェクト)。
+                    Call Me.Clear()
                 End If
 
                 ' TODO: アンマネージド リソース (アンマネージド オブジェクト) を解放し、下の Finalize() をオーバーライドします。

@@ -12,6 +12,7 @@ class DB.ConnectionManager {
   + Remove(dbname:String):Boolean
   + Exists(dbname:String):Boolean
   # CreateDbController(dbname:String):DB.ConnectionController
+  + Clear():Boolean
   + Dispose()
 }
 System.IDisposable <|.. DB.ConnectionManager
