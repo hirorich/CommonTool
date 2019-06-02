@@ -28,6 +28,7 @@ Namespace DB
 
                 ' 接続情報追加
                 Call Me.dbcontrollers.Add(dbname.Trim, controller)
+                Call LogTool.WriteLog(dbname.Trim & "への接続情報を追加しました。")
                 Add = True
 
             Catch ex As Exception
@@ -60,6 +61,7 @@ Namespace DB
 
                 ' 接続情報削除
                 Remove = Me.dbcontrollers.Remove(dbname.Trim)
+                Call LogTool.WriteLog(dbname.Trim & "への接続情報を削除しました。")
 
             Catch ex As Exception
                 Call LogTool.WriteLog(New Exception("接続情報の削除に失敗しました。", ex))

@@ -70,6 +70,7 @@ Namespace DB
 
                 ' 接続を開く
                 Call Me.connection.Open()
+                Call LogTool.WriteLog(Me.dbname & "の接続を開きました。")
                 Open = True
 
             Catch ex As Exception
@@ -92,6 +93,7 @@ Namespace DB
 
                 ' 接続を閉じる
                 Call Me.connection.Close()
+                Call LogTool.WriteLog(Me.dbname & "の接続を閉じました。")
                 Close = True
 
             Catch ex As Exception
@@ -115,6 +117,7 @@ Namespace DB
 
                 ' トランザクションを開始
                 Me.transaction = Me.connection.BeginTransaction()
+                Call LogTool.WriteLog("トランザクションを開始しました。")
                 BeginTransaction = True
 
             Catch ex As Exception
@@ -137,6 +140,8 @@ Namespace DB
                     ' トランザクション解放
                     Call Me.transaction.Dispose()
                     Me.transaction = Nothing
+
+                    Call LogTool.WriteLog("トランザクションをコミットしました。")
                 End If
                 Commit = True
 
@@ -159,6 +164,8 @@ Namespace DB
                 ' ロールバック実施
                 If Me.transaction IsNot Nothing Then
                     Call Me.transaction.Rollback()
+
+                    Call LogTool.WriteLog("トランザクションをロールバックしました。")
                 End If
                 Rollback = True
 
@@ -197,6 +204,7 @@ Namespace DB
 
                 ' コマンド実行
                 Call adapter.Fill(SearchRecord)
+                Call LogTool.WriteLog("レコードの検索に成功しました。")
 
             Catch ex As Exception
                 Call LogTool.WriteLog(New Exception("レコードの検索に失敗しました。", ex))
@@ -222,6 +230,7 @@ Namespace DB
 
                 ' コマンド実行
                 UpdateRecord = command.ExecuteNonQuery()
+                Call LogTool.WriteLog("レコードの更新に成功しました。")
 
             Catch ex As Exception
                 Call LogTool.WriteLog(New Exception("レコードの更新に失敗しました。", ex))
@@ -252,6 +261,7 @@ Namespace DB
 
                 ' 準備済みコマンド作成
                 Call Prepare.Prepare()
+                Call LogTool.WriteLog("コマンドの作成に成功しました。")
 
             Catch ex As Exception
                 Throw New Exception("コマンドの作成に失敗しました。", ex)
