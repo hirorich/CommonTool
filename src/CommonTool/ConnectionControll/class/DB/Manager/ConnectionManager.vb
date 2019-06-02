@@ -27,11 +27,12 @@ Namespace DB
             Try
 
                 ' 接続情報追加
-                Call Me.dbcontrollers.Add(dbname, controller)
+                Call Me.dbcontrollers.Add(dbname.Trim, controller)
                 Add = True
 
             Catch ex As Exception
                 Call LogTool.WriteLog(New Exception("接続情報の追加に失敗しました。", ex))
+                Call controller.Dispose()
                 Add = False
             End Try
         End Function
@@ -46,7 +47,7 @@ Namespace DB
 
             ' 存在しない場合
             If Not Me.Exists(dbname) Then
-                LogTool.WriteLog("指定した接続先：" & dbname & " が追加されていません。")
+                LogTool.WriteLog("指定した接続先が追加されていません。")
                 Return False
             End If
 
@@ -58,7 +59,7 @@ Namespace DB
                 controller = Nothing
 
                 ' 接続情報削除
-                Remove = Me.dbcontrollers.Remove(dbname)
+                Remove = Me.dbcontrollers.Remove(dbname.Trim)
 
             Catch ex As Exception
                 Call LogTool.WriteLog(New Exception("接続情報の削除に失敗しました。", ex))
@@ -75,7 +76,7 @@ Namespace DB
             Try
 
                 ' 接続先存在確認
-                Exists = Me.dbcontrollers.ContainsKey(dbname)
+                Exists = Me.dbcontrollers.ContainsKey(dbname.Trim)
 
             Catch ex As Exception
                 Call LogTool.WriteLog(New Exception("接続情報の存在チェックに失敗しました。", ex))
@@ -92,14 +93,14 @@ Namespace DB
 
             ' 存在しない場合
             If Not Me.Exists(dbname) Then
-                LogTool.WriteLog("指定した接続先：" & dbname & " が追加されていません。")
+                LogTool.WriteLog("指定した接続先が追加されていません。")
                 Return Nothing
             End If
 
             Try
 
                 ' 接続情報取得
-                CreateDbController = Me.dbcontrollers.Item(dbname)
+                CreateDbController = Me.dbcontrollers.Item(dbname.Trim)
 
             Catch ex As Exception
                 Call LogTool.WriteLog(New Exception("接続情報の取得に失敗しました。", ex))

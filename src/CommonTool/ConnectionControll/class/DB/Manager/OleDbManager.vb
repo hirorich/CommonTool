@@ -34,7 +34,7 @@ Namespace DB
         ''' <param name="connection">接続情報</param>
         ''' <returns>True:成功 / False:失敗</returns>
         Public Overloads Function Add(ByVal dbname As String, ByVal connection As OleDbConnection) As Boolean
-            Dim controller = New OleDbController(connection)
+            Dim controller = New OleDbController(dbname, connection)
             Return MyBase.Add(dbname, controller)
         End Function
 

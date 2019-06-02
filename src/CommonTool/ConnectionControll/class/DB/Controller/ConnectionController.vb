@@ -10,6 +10,11 @@ Namespace DB
         Implements IDisposable
 
         ''' <summary>
+        ''' 接続先
+        ''' </summary>
+        Private dbname As String
+
+        ''' <summary>
         ''' 接続情報
         ''' </summary>
         Private connection As IDbConnection
@@ -32,8 +37,14 @@ Namespace DB
         ''' <summary>
         ''' 接続情報を指定してインスタンス生成
         ''' </summary>
+        ''' <param name="dbname">接続先</param>
         ''' <param name="connection">接続情報</param>
-        Protected Friend Sub New(ByVal connection As IDbConnection)
+        Protected Friend Sub New(ByVal dbname As String, ByVal connection As IDbConnection)
+            If String.IsNullOrWhiteSpace(dbname) Then
+                Me.dbname = String.Empty
+            Else
+                Me.dbname = dbname.Trim
+            End If
             Me.connection = connection
             Me.transaction = Nothing
         End Sub
@@ -43,6 +54,12 @@ Namespace DB
         ''' </summary>
         ''' <returns>DbDataAdapter</returns>
         Protected MustOverride Function CreateDbDataAdapter() As DbDataAdapter
+
+        ''' <summary>
+        ''' クエリ実行に使用するIDbCommandインスタンス生成
+        ''' </summary>
+        ''' <returns>IDbCommand</returns>
+        Protected MustOverride Function CreateIDbCommand() As IDbCommand
 
         ''' <summary>
         ''' 接続を開く
@@ -56,7 +73,7 @@ Namespace DB
                 Open = True
 
             Catch ex As Exception
-                Call LogTool.WriteLog(New Exception("接続を開くことに失敗しました。", ex))
+                Call LogTool.WriteLog(New Exception(Me.dbname & "の接続を開くことに失敗しました。", ex))
                 Open = False
             End Try
         End Function
@@ -78,7 +95,7 @@ Namespace DB
                 Close = True
 
             Catch ex As Exception
-                Call LogTool.WriteLog(New Exception("接続を閉じることに失敗しました。", ex))
+                Call LogTool.WriteLog(New Exception(Me.dbname & "の接続を閉じることに失敗しました。", ex))
                 Close = False
             End Try
         End Function
@@ -126,7 +143,7 @@ Namespace DB
             Catch ex As Exception
 
                 ' 例外時はロールバック
-                Call LogTool.WriteLog(New Exception("トランザクションのコミットに失敗しました。ロールバックを実行します。", ex))
+                Call LogTool.WriteLog(New Exception("トランザクションのコミットに失敗しました。", ex))
                 Call Me.transaction.Rollback()
                 Commit = False
             End Try
@@ -160,11 +177,13 @@ Namespace DB
         End Function
 
         ''' <summary>
-        ''' コマンドを指定してレコードを検索する
+        ''' クエリを指定してレコードを検索する
         ''' </summary>
-        ''' <param name="command">実施コマンド</param>
+        ''' <param name="query">クエリ</param>
+        ''' <param name="parameters">パラメータ</param>
         ''' <returns>検索したレコード</returns>
-        Protected Function SearchRecord(ByVal command As IDbCommand) As DataTable
+        Protected Function SearchRecord(ByVal query As String, Optional ByVal parameters As IDataParameterCollection = Nothing) As DataTable
+            Dim command As IDbCommand
             Dim adapter As DbDataAdapter
 
             SearchRecord = New DataTable
@@ -172,7 +191,7 @@ Namespace DB
             Try
 
                 ' 実行準備
-                Call Me.Prepare(command)
+                command = Me.Prepare(query, parameters)
                 adapter = Me.CreateDbDataAdapter()
                 adapter.SelectCommand = command
 
@@ -188,15 +207,18 @@ Namespace DB
         End Function
 
         ''' <summary>
-        ''' コマンドを指定してレコードを更新する
+        ''' クエリを指定してレコードを更新する
         ''' </summary>
-        ''' <param name="command">実施コマンド</param>
+        ''' <param name="query">クエリ</param>
+        ''' <param name="parameters">パラメータ</param>
         ''' <returns>更新したレコード数</returns>
-        Protected Function UpdateRecord(ByVal command As IDbCommand) As Integer
+        Protected Function UpdateRecord(ByVal query As String, Optional ByVal parameters As IDataParameterCollection = Nothing) As Integer
+            Dim command As IDbCommand
+
             Try
 
                 ' 実行準備
-                Call Me.Prepare(command)
+                command = Me.Prepare(query, parameters)
 
                 ' コマンド実行
                 UpdateRecord = command.ExecuteNonQuery()
@@ -211,19 +233,31 @@ Namespace DB
         ''' <summary>
         ''' コマンドの実行準備
         ''' </summary>
-        ''' <param name="command">実施コマンド</param>
-        Private Sub Prepare(ByRef command As IDbCommand)
+        ''' <param name="query">クエリ</param>
+        ''' <param name="parameters">パラメータ</param>
+        ''' <returns>実行可能コマンド</returns>
+        Private Function Prepare(ByVal query As String, Optional ByVal parameters As IDataParameterCollection = Nothing) As IDbCommand
+            Try
+                Prepare = Me.CreateIDbCommand()
 
-            ' 接続情報付与
-            command.Connection = Me.connection
-            If Me.transaction IsNot Nothing Then
-                command.Transaction = Me.transaction
-            End If
+                ' 各種情報付与
+                Prepare.Connection = Me.connection
+                If Me.transaction IsNot Nothing Then
+                    Prepare.Transaction = Me.transaction
+                End If
+                Prepare.CommandText = query
+                If parameters IsNot Nothing Then
+                    Prepare.Parameters.Add(parameters)
+                End If
 
-            ' 準備済みコマンド作成
-            Call command.Prepare()
+                ' 準備済みコマンド作成
+                Call Prepare.Prepare()
 
-        End Sub
+            Catch ex As Exception
+                Throw New Exception("コマンドの作成に失敗しました。", ex)
+            End Try
+
+        End Function
 
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' 重複する呼び出しを検出するには

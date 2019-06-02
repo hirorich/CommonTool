@@ -37,43 +37,43 @@ class DB.OleDbManager {
 DB.ConnectionManager <|-- DB.OleDbManager
 
 abstract class DB.ConnectionController {
+  - dbname:String
   - connection:IDbConnection
   - transaction:IDbTransaction = Nothing
 
-  # New(connection:IDbConnection)
+  # New(dbname:String, connection:IDbConnection)
   # {abstract} CreateDbDataAdapter():System.Data.Common.DbDataAdapter
+  # {abstract} CreateIDbCommand():System.Data.IDbCommand
   + Open():Boolean
   + Close():Boolean
   + State():System.Data.ConnectionState
   + BeginTransaction():Boolean
   + Commit():Boolean
   + Rollback():Boolean
-  # SearchRecord(command:IDbCommand):Datatable
-  # UpdateRecord(command:IDbCommand):Integer
-  - Prepare(command:IDbCommand)
+  # SearchRecord(query:String, Optional parameters:IDataParameterCollection):Datatable
+  # UpdateRecord(query:String, Optional parameters:IDataParameterCollection):Integer
+  - Prepare(query:String, Optional parameters:IDataParameterCollection):IDbCommand
   + Dispose()
 }
 System.IDisposable <|.. DB.ConnectionController
 
 class DB.SqlController {
 
-  ~ New(connection:SqlConnection)
+  ~ New(dbname:String, connection:SqlConnection)
   # CreateDbDataAdapter():System.Data.Common.DbDataAdapter
-  + SelectRecord(query:String):Datatable
-  + SelectRecord(query:String, parameters:SqlParameterCollection):Datatable
-  + UpdateRecord(query:String):Integer
-  + UpdateRecord(query:String, parameters:SqlParameterCollection):Integer
+  # CreateIDbCommand():System.Data.IDbCommand
+  + SelectRecord(query:String, Optional parameters:SqlParameterCollection):Datatable
+  + UpdateRecord(query:String, Optional parameters:SqlParameterCollection):Integer
 }
 DB.ConnectionController <|-- DB.SqlController
 
 class DB.OleDbController {
 
-  ~ New(connection:OleDbConnection)
+  ~ New(dbname:String, connection:OleDbConnection)
   # CreateDbDataAdapter():System.Data.Common.DbDataAdapter
-  + SelectRecord(query:String):Datatable
-  + SelectRecord(query:String, parameters:OleDbParameterCollection):Datatable
-  + UpdateRecord(query:String):Integer
-  + UpdateRecord(query:String, parameters:OleDbParameterCollection):Integer
+  # CreateIDbCommand():System.Data.IDbCommand
+  + SelectRecord(query:String, Optional parameters:OleDbParameterCollection):Datatable
+  + UpdateRecord(query:String, Optional parameters:OleDbParameterCollection):Integer
 }
 DB.ConnectionController <|-- DB.OleDbController
 
