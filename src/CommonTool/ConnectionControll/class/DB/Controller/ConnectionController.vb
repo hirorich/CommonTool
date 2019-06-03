@@ -56,12 +56,6 @@ Namespace DB
         Protected MustOverride Function CreateDbDataAdapter() As DbDataAdapter
 
         ''' <summary>
-        ''' クエリ実行に使用するIDbCommandインスタンス生成
-        ''' </summary>
-        ''' <returns>IDbCommand</returns>
-        Protected MustOverride Function CreateIDbCommand() As IDbCommand
-
-        ''' <summary>
         ''' 接続を開く
         ''' </summary>
         ''' <returns>True:成功 / False:失敗</returns>
@@ -248,13 +242,10 @@ Namespace DB
         ''' <returns>実行可能コマンド</returns>
         Private Function Prepare(ByVal query As String, Optional ByVal parameters As IDataParameterCollection = Nothing) As IDbCommand
             Try
-                Prepare = Me.CreateIDbCommand()
+                Prepare = Me.connection.CreateCommand()
 
                 ' 各種情報付与
-                Prepare.Connection = Me.connection
-                If Me.transaction IsNot Nothing Then
-                    Prepare.Transaction = Me.transaction
-                End If
+                Prepare.Transaction = Me.transaction
                 Prepare.CommandText = query
                 If parameters IsNot Nothing Then
                     Prepare.Parameters.Add(parameters)

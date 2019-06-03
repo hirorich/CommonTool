@@ -27,14 +27,6 @@ Namespace DB
         End Function
 
         ''' <summary>
-        ''' 親クラスでクエリ実行に使用するIDbCommandインスタンス生成
-        ''' </summary>
-        ''' <returns>SqlCommand</returns>
-        Protected Overrides Function CreateIDbCommand() As IDbCommand
-            Return New SqlCommand()
-        End Function
-
-        ''' <summary>
         ''' クエリを指定してレコードを検索する
         ''' </summary>
         ''' <param name="query">クエリ</param>

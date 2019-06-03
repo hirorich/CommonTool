@@ -10,6 +10,7 @@ interface System.Data.IDbConnection {
   {abstract} BeginTransaction():System.Data.IDbTransaction
   {abstract} Open()
   {abstract} Close()
+  {abstract} CreateCommand():System.Data.IDbCommand
 }
 System.IDisposable <|-- System.Data.IDbConnection
 System.Data.IDbConnection <|.. System.Data.SqlClient.SqlConnection
@@ -62,6 +63,7 @@ enum System.Data.ConnectionState {
 
 System.Data.IDbTransaction *-- System.Data.IDbConnection
 System.Data.IDbConnection --> System.Data.IDbTransaction:BeginTransaction
+System.Data.IDbConnection --> System.Data.IDbCommand:CreateCommand
 System.Data.IDbConnection *-- System.Data.ConnectionState
 System.Data.IDbCommand *-- System.Data.IDbConnection
 System.Data.IDbCommand *-- System.Data.IDataParameterCollection

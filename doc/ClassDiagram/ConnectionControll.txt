@@ -44,7 +44,6 @@ abstract class DB.ConnectionController {
 
   # New(dbname:String, connection:IDbConnection)
   # {abstract} CreateDbDataAdapter():System.Data.Common.DbDataAdapter
-  # {abstract} CreateIDbCommand():System.Data.IDbCommand
   + Open():Boolean
   + Close():Boolean
   + State():System.Data.ConnectionState
@@ -62,7 +61,6 @@ class DB.SqlController {
 
   ~ New(dbname:String, connection:SqlConnection)
   # CreateDbDataAdapter():System.Data.Common.DbDataAdapter
-  # CreateIDbCommand():System.Data.IDbCommand
   + SelectRecord(query:String, Optional parameters:SqlParameterCollection):Datatable
   + UpdateRecord(query:String, Optional parameters:SqlParameterCollection):Integer
 }
@@ -72,7 +70,6 @@ class DB.OleDbController {
 
   ~ New(dbname:String, connection:OleDbConnection)
   # CreateDbDataAdapter():System.Data.Common.DbDataAdapter
-  # CreateIDbCommand():System.Data.IDbCommand
   + SelectRecord(query:String, Optional parameters:OleDbParameterCollection):Datatable
   + UpdateRecord(query:String, Optional parameters:OleDbParameterCollection):Integer
 }
