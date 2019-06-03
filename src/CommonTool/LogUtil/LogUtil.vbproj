@@ -64,8 +64,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="class\LOG\DefaultLogToolImpl.vb" />
-    <Compile Include="class\LOG\ILogTool.vb" />
+    <Compile Include="class\LOG\DefaultLogPartsImpl.vb" />
+    <Compile Include="class\LOG\ILogParts.vb" />
     <Compile Include="class\LOG\LogTool.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

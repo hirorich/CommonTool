@@ -4,35 +4,38 @@ interface System.IDisposable {
   + {abstract} Dispose()
 }
 
-interface LOG.ILogTool {
+interface LOG.ILogParts {
   + {abstract} WriteLog(message:String, Optional parameters:List(Of Object))
+  + {abstract} WriteLog(e:Exception, Optional parameters:List(Of Object))
 }
-System.IDisposable <|-- LOG.ILogTool
+System.IDisposable <|-- LOG.ILogParts
 
 class LOG.LogTool {
-  + {static} LogInstance:LOG.ILogTool
+  + {static} LogInstance:LOG.ILogParts
   + {static} Output:Boolean = True
 
   - New()
   + {static} WriteLog(message:String, Optional parameters:List(Of Object))
   + {static} WriteLog(e:Exception, Optional parameters:List(Of Object))
 }
-LOG.LogTool *-- LOG.ILogTool
+LOG.LogTool *-- LOG.ILogParts
 
-class LOG.DefaultLogToolImpl {
-  - {static} instance:LOG.DefaultLogToolImpl
+class LOG.DefaultLogPartsImpl {
+  - {static} instance:LOG.DefaultLogPartsImpl
 
   - New()
-  ~ {static} CreateInstance():LOG.DefaultLogToolImpl
+  ~ {static} CreateInstance():LOG.DefaultLogPartsImpl
   + WriteLog(message:String, Optional parameters:List(Of Object))
+  + WriteLog(e:Exception, Optional parameters:List(Of Object))
   + Dispose()
 }
-LOG.ILogTool <|.. LOG.DefaultLogToolImpl
+LOG.ILogParts <|.. LOG.DefaultLogPartsImpl
 
-class OtherLogToolImpl {
+class OtherLogPartsImpl {
   + WriteLog(message:String, Optional parameters:List(Of Object))
+  + WriteLog(e:Exception, Optional parameters:List(Of Object))
   + Dispose()
 }
-LOG.ILogTool <|.. OtherLogToolImpl
+LOG.ILogParts <|.. OtherLogPartsImpl
 
 @enduml

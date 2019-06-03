@@ -3,13 +3,13 @@
     ''' <summary>
     ''' ログ出力実装クラス(Default)
     ''' </summary>
-    Friend Class DefaultLogToolImpl
-        Implements ILogTool
+    Friend Class DefaultLogPartsImpl
+        Implements ILogParts
 
         ''' <summary>
         ''' Singleton パターンのインスタンス
         ''' </summary>
-        Private Shared instance As DefaultLogToolImpl
+        Private Shared instance As DefaultLogPartsImpl
 
         Private Sub New()
         End Sub
@@ -18,11 +18,11 @@
         ''' インスタンスの生成
         ''' </summary>
         ''' <returns>インスタンス</returns>
-        Friend Shared Function CreateInstance() As DefaultLogToolImpl
-            If DefaultLogToolImpl.instance Is Nothing Then
-                DefaultLogToolImpl.instance = New DefaultLogToolImpl()
+        Friend Shared Function CreateInstance() As DefaultLogPartsImpl
+            If DefaultLogPartsImpl.instance Is Nothing Then
+                DefaultLogPartsImpl.instance = New DefaultLogPartsImpl()
             End If
-            Return DefaultLogToolImpl.instance
+            Return DefaultLogPartsImpl.instance
         End Function
 
         ''' <summary>
@@ -30,8 +30,17 @@
         ''' </summary>
         ''' <param name="message">出力メッセージ</param>
         ''' <param name="parameters">パラメータ</param>
-        Public Sub WriteLog(message As String, Optional ByVal parameters As List(Of Object) = Nothing) Implements ILogTool.WriteLog
+        Public Sub WriteLog(message As String, Optional ByVal parameters As List(Of Object) = Nothing) Implements ILogParts.WriteLog
             Throw New NotImplementedException()
+        End Sub
+
+        ''' <summary>
+        ''' 発生した例外の内容をログに出力する
+        ''' </summary>
+        ''' <param name="e">Exception</param>
+        ''' <param name="parameters">パラメータ</param>
+        Public Sub WriteLog(ByVal e As Exception, Optional ByVal parameters As List(Of Object) = Nothing) Implements ILogParts.WriteLog
+            Call Me.WriteLog(e.ToString())
         End Sub
 
 #Region "IDisposable Support"
