@@ -1,0 +1,25 @@
+@startuml img\要求図.png
+
+frame "req システムレベル要求[検討初期]" {
+  object 主要求<<requirement>> {
+    Text = CPLD駆動の電光掲示板を作成する
+  }
+
+  object 設定<<functionalRequirement>> {
+    Text = 表示する文字列を設定する
+  }
+  主要求 +-- 設定
+
+  object 表示<<functionalRequirement>> {
+    Text = 文字列を表示する
+  }
+  主要求 +-- 表示
+
+  object スクロール<<functionalRequirement>> {
+    Text = 文字列が表示領域に収まら
+    ない場合はスクロールを繰り返す
+  }
+  表示 <.. スクロール:<<deriveReqt>>
+}
+
+@enduml

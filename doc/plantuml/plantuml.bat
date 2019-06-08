@@ -1,3 +1,5 @@
 echo off
 cd %~dp0
-java -jar plantuml.jar %1
+for %%f in (%*) do (
+  java -jar plantuml.jar %%f
+)

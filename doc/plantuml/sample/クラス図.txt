@@ -1,0 +1,41 @@
+@startuml img\ƒNƒ‰ƒX}.png
+
+package sample {
+  abstract class AbstractList
+  abstract AbstractCollection
+  interface List
+  interface Collection
+
+  List <|-- AbstractList
+  Collection <|-- AbstractCollection
+
+  Collection <|- List
+  AbstractCollection <|- AbstractList
+  AbstractList <|-- ArrayList
+
+  class ArrayList {
+    Object[] elementData
+    size()
+  }
+
+  enum TimeUnit {
+    DAYS
+    HOURS
+    MINUTES
+  }
+
+  annotation SuppressWarnings
+}
+
+class package.Dummy {
+  {static} String id
+ -field1
+ #field2
+  {field} A field (despite parentheses)
+  {abstract} void methods()
+ ~method1()
+ +method2()
+  {method} Some method
+}
+
+@enduml
