@@ -6,14 +6,13 @@ rectangle When
 rectangle Where
 rectangle Who
 rectangle What
+rectangle Why
 
 When -- (Requirement)
 Where -- (Requirement)
 (Requirement) -- Who
+(Requirement) -- Why
 (Requirement) -- What
-
-(Requirement) <. (deriveReqt)
-(baseReqt) <. (Requirement)
 
 
 
@@ -25,6 +24,9 @@ Where -- (Requirement)
 
 Who -- (acter1)
 Who -- (acter2)
+
+Why -- (reason1)
+Why -- (reason2)
 
 What -- (action1)
 What -- (action2)
