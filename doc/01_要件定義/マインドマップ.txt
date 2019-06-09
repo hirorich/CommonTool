@@ -10,55 +10,55 @@ rectangle Who
 rectangle What
 rectangle Why
 
-When -- Requirement
-Where -- Requirement
-Why -- Requirement
+Requirement -- Why
+Requirement -- When
+Requirement -- Where
 Requirement -- Who
 Requirement -- What
 
 
-
-usecase (テスト実施時) as (time1)
-usecase (結合テスト) as (time2)
-(time1) -- When
-(単体テスト) -- (time1)
-(time2) -- (time1)
-(システム間結合テスト) -- (time2)
-(システム内結合テスト) -- (time2)
-(テスト期間中) -- When
-
-usecase (テスト環境) as (env1)
-(env1) -- Where
-(Client) -- (env1)
-(Server) -- (env1)
-(DB) -- (env1)
-(exe) -- (Client)
-(bat) -- (Client)
-(dll) -- (Client)
-(HTTP) -- (Server)
-(FTP) -- (Server)
-(DB) -- (Server)
-(SQL Server) -- (DB)
-(Oracle) -- (DB)
-(DB2) -- (DB)
-(MySQL) -- (DB)
-
-Who -- (テストツール作成者)
-Who -- (テスター)
-Who -- (レビュアー)
 
 usecase (テストの実施が面倒) as (reason1)
 usecase (エビデンス取得が面倒) as (reason2)
 usecase (エビデンス整理が面倒) as (reason3)
 usecase (テストツール作成が面倒) as (reason4)
 usecase (テストデータ作成が面倒) as (reason5)
-(reason1) -- Why
-(reason2) -- Why
-(reason3) -- Why
-(reason5) -- Why
-(reason4) -- (reason1)
-(reason4) -- (reason2)
-(reason4) -- (reason3)
+Why -- (reason1)
+Why -- (reason2)
+Why -- (reason3)
+Why -- (reason5)
+(reason1) -- (reason4)
+(reason2) -- (reason4)
+(reason3) -- (reason4)
+
+usecase (テスト実施時) as (time1)
+usecase (結合テスト) as (time2)
+When -- (time1)
+(time1) -- (単体テスト)
+(time1) -- (time2)
+(time2) -- (システム間結合テスト)
+(time2) -- (システム内結合テスト)
+When -- (テスト期間中)
+
+usecase (テスト環境) as (env1)
+Where -- (env1)
+(env1) -- (Client)
+(env1) -- (Server)
+(env1) -- (DB)
+(Client) -- (.exe)
+(Client) -- (.bat)
+(Client) -- (.dll)
+(Server) -- (HTTP)
+(Server) -- (FTP)
+(Server) -- (DB)
+(DB) -- (SQL Server)
+(DB) -- (Oracle)
+(DB) -- (DB2)
+(DB) -- (MySQL)
+
+Who -- (テストツール作成者)
+Who -- (テスター)
+Who -- (レビュアー)
 
 usecase (エビデンス) as (obj1)
 usecase (スタブ) as (obj2)
