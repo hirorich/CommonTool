@@ -11,6 +11,7 @@ rectangle CommonTool {
   usecase (CSVファイルに出力する) as (CSV)
   usecase (Excelファイルに出力する) as (Excel)
   usecase (画像ファイルに出力する) as (IMAGE)
+  usecase (環境設定を読み書きする) as (環境設定)
 }
 
 database DB
@@ -24,12 +25,14 @@ component 外部コマンド
 呼び出し元 -- (Excel)
 呼び出し元 -- (外部コマンド実行)
 呼び出し元 -- (IMAGE)
+呼び出し元 -- (環境設定)
 
 (外部コマンド実行) ..> (LOG) : include
 (DB操作) ..> (LOG) : include
 (CSV) ..> (LOG) : include
 (Excel) ..> (LOG) : include
 (IMAGE) ..> (LOG) : include
+(環境設定) ..> (LOG) : include
 
 (DB操作) -- DB
 (外部コマンド実行) -- 外部コマンド
