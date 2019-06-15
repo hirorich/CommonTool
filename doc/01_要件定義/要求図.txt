@@ -14,6 +14,11 @@ object ドライバ<<physicalRequirement>> {
 }
 主要求 +-- ドライバ
 
+object 外部コマンド実行<<functionalRequirement>> {
+  Text = 外部コマンドを呼び出す
+}
+ドライバ <.. 外部コマンド実行:<<deriveReqt>>
+
 object 構造<<designConstraint>> {
   Text = 複数の共通部品で成り立つ
 }
