@@ -29,15 +29,14 @@ object 環境設定<<functionalRequirement>> {
 }
 構造 <.. 環境設定:<<deriveReqt>>
 
-object 実行ログ<<functionalRequirement>> {
-  Text = 部品内の実行ログを取る
-}
-構造 <.. 実行ログ:<<deriveReqt>>
-
 object エビデンス<<interfaceRequirement>> {
   Text = エビデンスを作成する
 }
 主要求 +-- エビデンス
+
+object 実行ログ<<functionalRequirement>> {
+  Text = 部品内の実行ログを取る
+}
 エビデンス <.. 実行ログ:<<deriveReqt>>
 
 object DBダンプ<<functionalRequirement>> {
