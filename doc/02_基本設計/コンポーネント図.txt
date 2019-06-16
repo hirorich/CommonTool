@@ -12,6 +12,7 @@ package CommonTool {
 
 database DB
 component 外部コマンド
+interface 環境変数
 
 file ".xls" as xls
 file ".xlsx" as xlsx
@@ -21,27 +22,34 @@ file ".ini" as ini
 file ".env" as env
 file 画像 as image
 
+callLogUtil -(0- LogUtil
+LogUtil --> log
+
 callCommandUtil -(0- CommandUtil
 CommandUtil -(0- 外部コマンド
+callLogUtil <-- CommandUtil
 
 callImageUtil -(0- ImageUtil
 ImageUtil --> image
+callLogUtil <-- ImageUtil
 
 callDbUtil -(0- DbUtil
 DbUtil -(0- DB
+callLogUtil <-- DbUtil
 
 callEnvironmentUtil -(0- EnvironmentUtil
-EnvironmentUtil <-- ini
+EnvironmentUtil <--> ini
 EnvironmentUtil <-- env
+EnvironmentUtil <-- 環境変数
+callLogUtil <-- EnvironmentUtil
 
 callFileUtil -(0- FileUtil
 FileUtil --> csv
+callLogUtil <-- FileUtil
 
 callExcelUtil -(0- ExcelUtil
-ExcelUtil --> xls
-ExcelUtil --> xlsx
-
-callLogUtil -(0- LogUtil
-LogUtil --> log
+ExcelUtil <--> xls
+ExcelUtil <--> xlsx
+callLogUtil <-- ExcelUtil
 
 @enduml
