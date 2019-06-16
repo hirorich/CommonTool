@@ -1,0 +1,47 @@
+@startuml img\コンポーネント図.png
+
+package CommonTool {
+  component CommandUtil
+  component ImageUtil
+  component DbUtil
+  component EnvironmentUtil
+  component FileUtil
+  component ExcelUtil
+  component LogUtil
+}
+
+database DB
+component 外部コマンド
+
+file ".xls" as xls
+file ".xlsx" as xlsx
+file ".log" as log
+file ".csv" as csv
+file ".ini" as ini
+file ".env" as env
+file 画像 as image
+
+callCommandUtil -(0- CommandUtil
+CommandUtil -(0- 外部コマンド
+
+callImageUtil -(0- ImageUtil
+ImageUtil --> image
+
+callDbUtil -(0- DbUtil
+DbUtil -(0- DB
+
+callEnvironmentUtil -(0- EnvironmentUtil
+EnvironmentUtil <-- ini
+EnvironmentUtil <-- env
+
+callFileUtil -(0- FileUtil
+FileUtil --> csv
+
+callExcelUtil -(0- ExcelUtil
+ExcelUtil --> xls
+ExcelUtil --> xlsx
+
+callLogUtil -(0- LogUtil
+LogUtil --> log
+
+@enduml
