@@ -27,13 +27,6 @@ component 外部コマンド
 呼び出し元 -- (IMAGE)
 呼び出し元 -- (環境設定)
 
-(外部コマンド実行) ..> (LOG) : include
-(DB操作) ..> (LOG) : include
-(CSV) ..> (LOG) : include
-(Excel) ..> (LOG) : include
-(IMAGE) ..> (LOG) : include
-(環境設定) ..> (LOG) : include
-
 (DB操作) -- DB
 (外部コマンド実行) -- 外部コマンド
 
