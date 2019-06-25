@@ -2,7 +2,7 @@
 
 package CommonTool {
   component CommandControl
-  component ImageControl
+  component ImageControl #lightgrey
   component DbControl
   component IniControl
   component TextFileControl
@@ -21,18 +21,18 @@ interface システム環境変数
 interface ユーザ環境変数
 interface プロセス環境変数
 
-file 画像ファイル as image
+file 画像ファイル as image #lightgrey
 file テキストファイル as text
 file Excelファイル as excel
 file ".xls" as xls
-file ".xlsx" as xlsx
+file ".xlsx" as xlsx #lightgrey
 file ".log" as log
 file ".csv" as csv
-file ".xml" as xml
-file ".json" as json
+file ".xml" as xml #lightgrey
+file ".json" as json #lightgrey
 file ".ini" as ini
 file ".env" as env
-file .png as png
+file .png as png #lightgrey
 
 callLogControl -(0- LogControl
 LogControl --> log
@@ -45,6 +45,7 @@ CommandControl <-- 環境変数
 環境変数 <|-- ユーザ環境変数
 環境変数 <|-- プロセス環境変数
 
+interface callImageControl #lightgrey
 callImageControl -(0- ImageControl
 ImageControl --> image
 image <|-- png

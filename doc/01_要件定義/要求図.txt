@@ -4,7 +4,7 @@ object 主要求<<requirement>> {
   Text = テストツールを作成する
 }
 
-object スタブ<<physicalRequirement>> {
+object スタブ<<physicalRequirement>> #lightgrey {
   Text = スタブの実装
 }
 主要求 +-- スタブ
@@ -72,7 +72,7 @@ object LOG<<functionalRequirement>> {
 }
 外部ファイル出力 <.. LOG:<<refine>>
 
-object IMAGE<<functionalRequirement>> {
+object IMAGE<<functionalRequirement>> #lightgrey {
   Text = 画像ファイルに出力する
 }
 外部ファイル出力 <.. IMAGE:<<refine>>
