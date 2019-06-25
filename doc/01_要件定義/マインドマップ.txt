@@ -104,9 +104,9 @@ What -- (PG言語)
 (obj8) -- (obj12)
 (obj9) -- (obj12)
 (obj12) -- (Excel)
-(obj12) -- (csv)
+(obj12) -- (テキストファイル)
 (obj12) -- (log)
-(obj12) -- (画像)
+(obj12) -- (画像ファイル)
 (obj12) -- (出力ファイル)
 
 @enduml

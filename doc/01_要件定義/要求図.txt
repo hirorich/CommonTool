@@ -27,6 +27,7 @@ object 構造<<designConstraint>> {
 object 環境設定<<functionalRequirement>> {
   Text = 環境設定を読み書きする
 }
+外部コマンド実行 <.. 環境設定:<<deriveReqt>>
 構造 <.. 環境設定:<<deriveReqt>>
 
 object エビデンス<<interfaceRequirement>> {
@@ -61,10 +62,10 @@ object Excel<<functionalRequirement>> {
 }
 外部ファイル出力 <.. Excel:<<refine>>
 
-object CSV<<functionalRequirement>> {
-  Text = CSVファイルに出力する
+object TEXT<<functionalRequirement>> {
+  Text = テキストファイルに出力する
 }
-外部ファイル出力 <.. CSV:<<refine>>
+外部ファイル出力 <.. TEXT:<<refine>>
 
 object LOG<<functionalRequirement>> {
   Text = LOGファイルに出力する
