@@ -1,49 +1,71 @@
 @startuml img\コンポーネント図.png
 
 package CommonTool {
-  component CommandUtil
-  component ImageUtil
-  component DbUtil
-  component EnvironmentUtil
-  component FileUtil
-  component ExcelUtil
-  component LogUtil
+  component CommandControl
+  component ImageControl
+  component DbControl
+  component IniControl
+  component TextFileControl
+  component ExcelControl
+  component LogControl
 }
 
 database DB
-component 外部コマンド
-interface 環境変数
+database SQLServer
+database Access
 
+component 外部コマンド
+
+interface 環境変数
+interface システム環境変数
+interface ユーザ環境変数
+interface プロセス環境変数
+
+file 画像ファイル as image
+file テキストファイル as text
+file Excelファイル as excel
 file ".xls" as xls
 file ".xlsx" as xlsx
 file ".log" as log
 file ".csv" as csv
+file ".xml" as xml
+file ".json" as json
 file ".ini" as ini
 file ".env" as env
-file 画像 as image
+file .png as png
 
-callLogUtil -(0- LogUtil
-LogUtil --> log
+callLogControl -(0- LogControl
+LogControl --> log
 
-callCommandUtil -(0- CommandUtil
-CommandUtil -(0- 外部コマンド
+callCommandControl -(0- CommandControl
+CommandControl -(0- 外部コマンド
+CommandControl <-- env
+CommandControl <-- 環境変数
+環境変数 <|-- システム環境変数
+環境変数 <|-- ユーザ環境変数
+環境変数 <|-- プロセス環境変数
 
-callImageUtil -(0- ImageUtil
-ImageUtil --> image
+callImageControl -(0- ImageControl
+ImageControl --> image
+image <|-- png
 
-callDbUtil -(0- DbUtil
-DbUtil -(0- DB
+callDbControl -(0- DbControl
+DbControl -(0- DB
+DB <|-- SQLServer
+DB <|-- Access
 
-callEnvironmentUtil -(0- EnvironmentUtil
-EnvironmentUtil <--> ini
-EnvironmentUtil <-- env
-EnvironmentUtil <-- 環境変数
+callIniControl -(0- IniControl
+IniControl <--> ini
 
-callFileUtil -(0- FileUtil
-FileUtil --> csv
+callTextFileControl -(0- TextFileControl
+TextFileControl --> text
+text <|-- csv
+text <|-- xml
+text <|-- json
 
-callExcelUtil -(0- ExcelUtil
-ExcelUtil <--> xls
-ExcelUtil <--> xlsx
+callExcelControl -(0- ExcelControl
+ExcelControl --> excel
+excel <|-- xls
+excel <|-- xlsx
 
 @enduml
