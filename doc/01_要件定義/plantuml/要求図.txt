@@ -1,4 +1,4 @@
-@startuml img\要求図.png
+@startuml ..\要求図.png
 
 object 主要求<<requirement>> {
   Text = テストツールを作成する
