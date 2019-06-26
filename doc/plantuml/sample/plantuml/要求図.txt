@@ -1,4 +1,4 @@
-@startuml img\要求図.png
+@startuml ..\要求図.png
 
 frame "req システムレベル要求[検討初期]" {
   object 主要求<<requirement>> {

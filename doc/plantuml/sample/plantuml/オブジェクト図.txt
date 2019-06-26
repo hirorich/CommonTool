@@ -1,4 +1,4 @@
-@startuml img\オブジェクト図.png
+@startuml ..\オブジェクト図.png
 
 object Object01
 object Object02

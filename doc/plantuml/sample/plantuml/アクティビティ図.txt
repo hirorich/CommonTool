@@ -1,4 +1,4 @@
-@startuml img\アクティビティ図.png
+@startuml ..\アクティビティ図.png
 
 |Line1|
 start

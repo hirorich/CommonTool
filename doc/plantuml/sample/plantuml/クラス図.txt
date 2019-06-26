@@ -1,4 +1,4 @@
-@startuml img\クラス図.png
+@startuml ..\クラス図.png
 
 package sample {
   abstract class AbstractList

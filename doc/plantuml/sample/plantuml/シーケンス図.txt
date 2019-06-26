@@ -1,4 +1,4 @@
-@startuml img\シーケンス図.png
+@startuml ..\シーケンス図.png
 
 participant User
 

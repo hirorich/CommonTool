@@ -1,4 +1,4 @@
-@startuml img\ユースケース図.png
+@startuml ..\ユースケース図.png
 
 left to right direction
 

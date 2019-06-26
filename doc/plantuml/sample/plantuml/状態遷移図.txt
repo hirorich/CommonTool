@@ -1,4 +1,4 @@
-@startuml img\ó‘Ô‘JˆÚ}.png
+@startuml ..\ó‘Ô‘JˆÚ}.png
 
 scale 350 width
 [*] --> NotShooting

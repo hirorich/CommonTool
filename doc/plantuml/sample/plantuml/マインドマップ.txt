@@ -1,4 +1,4 @@
-@startuml img\マインドマップ.png
+@startuml ..\マインドマップ.png
 
 left to right direction
 

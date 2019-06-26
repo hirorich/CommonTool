@@ -1,4 +1,4 @@
-@startuml img\コンポーネント図.png
+@startuml ..\コンポーネント図.png
 
 package "Some Group" {
   HTTP - [First Component]
