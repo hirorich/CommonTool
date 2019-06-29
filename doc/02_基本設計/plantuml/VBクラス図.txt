@@ -1,0 +1,66 @@
+@startuml ..\VBクラス図.png
+
+package Namespace {
+  abstract SampleAbstract {
+    -m_Enum:SampleEnum
+    ~New()
+    #{abstract} SubProcedure((ByRef)arg1:type)
+  }
+
+  interface ISampleInterface {
+    +{abstract} FunctionProcedure(arg1:type, (Optional)arg2:type):type
+  }
+
+  class SampleClass {
+    +{static} CONST_FIELD:type
+    -m_InstanceField:SampleItem
+    -{static} m_ClassField:type
+
+    -New(arg:type)
+    #PropertyProcedure():type
+    #PropertyProcedure(value:type)
+    #SubProcedure((ByRef)arg1:type)
+    +FunctionProcedure(arg1:type, (Optional)arg2:type):type
+  }
+  SampleAbstract <|-- SampleClass
+  ISampleInterface <|.. SampleClass
+
+  class SampleItem {
+    -m_Field:type
+    ~PropertyProcedure():type
+  }
+  SampleClass *-- SampleItem
+
+  enum SampleEnum {
+    ENUM1=0
+    ENUM2
+    ENUM3
+    ENUM4=10
+    ENUM5
+  }
+  SampleAbstract *-- SampleEnum
+  
+  package Namespace2 {
+    class SampleClass2
+  }
+}
+
+note "クラス名\n大文字始まり、大文字区切り\n\nプロシージャ(Property, Function, Sub)\n大文字始まり、大文字区切り\n\n定数\n大文字英字、'_'区切り\nPublic or Friend\n\nフィールド\n大文字始まり、大文字区切り\n接頭語に、'm_'を付ける\nPrivate or Protected\n\nローカル変数\n小文字始まり、大文字区切り\n\n\n\nPropertyはGet, Setを分けて記載\n\nPublicフィールド、Friendフィールドは禁止\nPropertyを使用する" as N_Class
+N_Class . SampleClass
+
+note "インタフェース名は接頭語に'I'を付ける" as N_Interface
+N_Interface .. ISampleInterface
+
+note "良い名前がなかった場合は\nクラス名を'Abstract〇〇'とし\n実装クラスを'〇〇Impl'とする" as N_Abstract
+N_Abstract ..SampleAbstract
+
+note "列挙型は大文字英字、'_'区切り\n対応する整数も記載\n連番の場合は省略可" as N_Enum
+SampleEnum .. N_Enum
+
+note "デフォルトコンストラクタは省略可能" as N_Class2
+SampleItem .. N_Class2
+
+note "名前空間\n大文字始まり、大文字区切り\n\n\n\n名前空間内に名前空間を宣言可能\nクラスとファイルは1対1で作成\n名前空間毎にフォルダを作成\n例：\nNamespace\n　　┗ISampleInterface.vb\n　　┗SampleAbstract.vb\n　　┗SampleClass.vb\n　　┗SampleEnum.vb\n　　┗SampleItem.vb\n　　┗Namespace2\n　　　　┗SampleClass2.vb" as N_NameSpace
+Namespace2 . N_NameSpace
+
+@enduml
