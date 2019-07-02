@@ -10,6 +10,8 @@ component "CommonTool.Ini.dll" as CommonToolIni {
 
 package "WindowsAPI" as kernel32 {
   component "kernel32.dll" {
+    (GetPrivateProfileSectionNames)
+    (GetPrivateProfileSection)
     (GetPrivateProfileString)
     (WritePrivateProfileString)
   }
@@ -20,12 +22,16 @@ file ".ini" as IniFile
 caller --> (iniファイルを読み込む)
 caller --> (iniファイルに書き込む)
 
+(iniファイルを読み込む) --> (GetPrivateProfileSectionNames)
+(iniファイルを読み込む) --> (GetPrivateProfileSection)
 (iniファイルを読み込む) --> (GetPrivateProfileString)
 (iniファイルに書き込む) --> (WritePrivateProfileString)
 (iniファイルを読み込む) --> (ファイルの存在チェック)
 (iniファイルに書き込む) --> (ファイルの存在チェック)
 (ファイルの存在チェック) --> IniFile
 
+(GetPrivateProfileSectionNames) --> IniFile
+(GetPrivateProfileSection) --> IniFile
 (GetPrivateProfileString) --> IniFile
 (WritePrivateProfileString) --> IniFile
 

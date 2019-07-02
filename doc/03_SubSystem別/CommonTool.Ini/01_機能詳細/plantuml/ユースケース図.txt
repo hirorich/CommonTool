@@ -12,6 +12,9 @@ rectangle CommonTool.Ini {
   (iniファイルに書き込む) --> IniFile
   (ファイルの存在チェック) <. (iniファイルを読み込む) : include
   (iniファイルに書き込む) .> (ファイルの存在チェック) : include
+  (セクション一覧読み込み) ..> (iniファイルを読み込む) : extends
+  (iniファイルを読み込む) <. (キー一覧読み込み) : extends
+  (iniファイルを読み込む) <.. (値読み込み) : extends
 }
 
 @enduml
