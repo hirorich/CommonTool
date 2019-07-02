@@ -1,0 +1,18 @@
+@startuml ..\コンポーネント図.png
+
+interface "呼び出し元" as caller
+
+component "CommonTool.Ini.dll" as CommonToolIni
+
+package "WindowsAPI" {
+  component "kernel32.dll" as kernel32
+}
+
+file ".ini" as IniFile
+
+caller --> CommonToolIni
+CommonToolIni --> kernel32
+kernel32 --> IniFile
+CommonToolIni --> IniFile
+
+@enduml
