@@ -45,6 +45,9 @@ package Namespace {
   }
 }
 
+note "最上位の名前空間はアセンブリ名と同じ\n例：\nNamespace.dll" as N_NameSpace
+N_NameSpace .. Namespace
+
 note "クラス名\n大文字始まり、大文字区切り\n\nプロシージャ(Property, Function, Sub)\n大文字始まり、大文字区切り\n\n定数\n大文字英字、'_'区切り\nPublic or Friend\n\nフィールド\n大文字始まり、大文字区切り\n接頭語に、'm_'を付ける\nPrivate or Protected\n\nローカル変数\n小文字始まり、大文字区切り\n\n\n\nPropertyはGet, Setを分けて記載\n\nPublicフィールド、Friendフィールドは禁止\nPropertyを使用する" as N_Class
 N_Class . SampleClass
 
@@ -60,7 +63,8 @@ SampleEnum .. N_Enum
 note "デフォルトコンストラクタは省略可能" as N_Class2
 SampleItem .. N_Class2
 
-note "名前空間\n大文字始まり、大文字区切り\n\n\n\n名前空間内に名前空間を宣言可能\nクラスとファイルは1対1で作成\n名前空間毎にフォルダを作成\n例：\nNamespace\n　　┗ISampleInterface.vb\n　　┗SampleAbstract.vb\n　　┗SampleClass.vb\n　　┗SampleEnum.vb\n　　┗SampleItem.vb\n　　┗Namespace2\n　　　　┗SampleClass2.vb" as N_NameSpace
-Namespace2 . N_NameSpace
+note "名前空間\n大文字始まり、大文字区切り\n\n\n\n名前空間内に名前空間を宣言可能\nクラスとファイルは1対1で作成\n名前空間毎にフォルダを作成\n例：\nNamespace\n　　┗ISampleInterface.vb\n　　┗SampleAbstract.vb\n　　┗SampleClass.vb\n　　┗SampleEnum.vb\n　　┗SampleItem.vb\n　　┗Namespace2\n　　　　┗SampleClass2.vb" as N_NameSpace2
+Namespace2 . N_NameSpace2
+
 
 @enduml

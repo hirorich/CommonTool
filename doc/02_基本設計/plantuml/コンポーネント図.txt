@@ -1,16 +1,16 @@
 @startuml ..\コンポーネント図.png
 
 package CommonTool {
-  component CommandControl
-  component ImageControl #lightgrey
-  component DbControl
-  component IniControl
-  component TextFileControl
-  component ExcelControl
-  component LogControl
+  component Command
+  component Image #lightgrey
+  component DB
+  component Ini
+  component TextFile
+  component Excel
+  component Log
 }
 
-database DB
+database DBServer
 database SQLServer
 database Access
 
@@ -21,52 +21,52 @@ interface システム環境変数
 interface ユーザ環境変数
 interface プロセス環境変数
 
-file 画像ファイル as image #lightgrey
+file 画像ファイル #lightgrey
 file テキストファイル as text
-file Excelファイル as excel
+file Excelファイル
 file ".xls" as xls
 file ".xlsx" as xlsx #lightgrey
-file ".log" as log
+file ".log" as ログファイル
 file ".csv" as csv
 file ".xml" as xml #lightgrey
 file ".json" as json #lightgrey
-file ".ini" as ini
+file ".ini" as IniFile
 file ".env" as env
 file .png as png #lightgrey
 
-callLogControl -(0- LogControl
-LogControl --> log
+callLog -(0- Log
+Log --> ログファイル
 
-callCommandControl -(0- CommandControl
-CommandControl -(0- 外部コマンド
-CommandControl <-- env
-CommandControl <-- 環境変数
+callCommand -(0- Command
+Command -(0- 外部コマンド
+Command <-- env
+Command <-- 環境変数
 環境変数 <|-- システム環境変数
 環境変数 <|-- ユーザ環境変数
 環境変数 <|-- プロセス環境変数
 
-interface callImageControl #lightgrey
-callImageControl -(0- ImageControl
-ImageControl --> image
-image <|-- png
+interface callImage #lightgrey
+callImage -(0- Image
+Image --> 画像ファイル
+画像ファイル <|-- png
 
-callDbControl -(0- DbControl
-DbControl -(0- DB
-DB <|-- SQLServer
-DB <|-- Access
+callDB -(0- DB
+DB -(0- DBServer
+DBServer <|-- SQLServer
+DBServer <|-- Access
 
-callIniControl -(0- IniControl
-IniControl <--> ini
+callIni -(0- Ini
+Ini <--> IniFile
 
-callTextFileControl -(0- TextFileControl
-TextFileControl --> text
+callTextFile -(0- TextFile
+TextFile --> text
 text <|-- csv
 text <|-- xml
 text <|-- json
 
-callExcelControl -(0- ExcelControl
-ExcelControl --> excel
-excel <|-- xls
-excel <|-- xlsx
+callExcel -(0- Excel
+Excel --> Excelファイル
+Excelファイル <|-- xls
+Excelファイル <|-- xlsx
 
 @enduml
