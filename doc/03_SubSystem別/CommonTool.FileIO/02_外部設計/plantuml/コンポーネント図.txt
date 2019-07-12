@@ -26,6 +26,7 @@ caller --> CsvWriter
 IniControl --> kernel32
 kernel32 --> IniFile
 
+IniControl --> TextWriter
 LogWriter --> TextWriter
 TextWriter --> LogFile
 LogWriter --> OtherLogWriter
