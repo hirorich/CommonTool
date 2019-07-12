@@ -1,0 +1,26 @@
+@startuml ..\コンポーネント図_CsvWriter.png
+
+interface "呼び出し元" as caller
+
+component "CommonTool.FileIO.dll" as FileIO {
+  rectangle IniControl
+  rectangle LogWriter
+  rectangle CsvWriter {
+    (CSVファイルに書き込む)
+  }
+  rectangle TextWriter {
+    (ファイルの存在チェック)
+    (テキストファイル出力)
+  }
+}
+
+file ".csv" as CsvFile
+
+caller --> (CSVファイルに書き込む)
+
+(ファイルの存在チェック) <-- CsvWriter
+(テキストファイル出力) <-- CsvWriter
+
+(テキストファイル出力) --> CsvFile
+
+@enduml

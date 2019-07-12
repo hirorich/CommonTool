@@ -7,7 +7,7 @@ file ".ini" as IniFile
 file ".log" as LogFile
 file ".csv" as CsvFile
 
-rectangle CommonTool.FileIO {
+rectangle CommonTool.FileIO as FileIO {
   rectangle IniControl {
     呼び出し元 -- (iniファイルを読み込む)
     呼び出し元 -- (iniファイルに書き込む)
@@ -23,7 +23,8 @@ rectangle CommonTool.FileIO {
     (CSVファイルに書き込む) --> CsvFile
   }
   rectangle TextWriter {
-    (共通的な処理)
+    (ファイルの存在チェック)
+    (テキストファイル出力)
   }
 }
 
