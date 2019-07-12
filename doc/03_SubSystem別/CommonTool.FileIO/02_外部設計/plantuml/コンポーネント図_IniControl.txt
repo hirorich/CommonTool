@@ -28,6 +28,8 @@ file ".ini" as IniFile
 caller --> (iniファイルを読み込む)
 caller --> (iniファイルに書き込む)
 
+(ファイルの存在チェック) <-- IniControl
+
 (iniファイルを読み込む) --> (GetPrivateProfileSectionNames)
 (iniファイルを読み込む) --> (GetPrivateProfileSection)
 (iniファイルを読み込む) --> (GetPrivateProfileString)

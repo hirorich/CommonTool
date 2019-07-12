@@ -13,6 +13,8 @@ package "WindowsAPI" as WinAPI {
   component "kernel32.dll" as kernel32
 }
 
+component "ŠO•”•”•i" as OtherLogWriter
+
 file ".ini" as IniFile
 file ".log" as LogFile
 file ".csv" as CsvFile
@@ -26,6 +28,8 @@ kernel32 --> IniFile
 
 LogWriter --> TextWriter
 TextWriter --> LogFile
+LogWriter --> OtherLogWriter
+OtherLogWriter --> LogFile
 CsvWriter --> TextWriter
 TextWriter --> CsvFile
 

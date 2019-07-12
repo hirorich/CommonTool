@@ -1,9 +1,11 @@
-@startuml ..\ユースケース図_IniControl.png
+@startuml ..\ユースケース図.png
 
 left to right direction
 
 actor 呼び出し元
 file ".ini" as IniFile
+file ".log" as LogFile
+file ".csv" as CsvFile
 
 rectangle CommonTool.FileIO {
   rectangle IniControl {
@@ -11,9 +13,14 @@ rectangle CommonTool.FileIO {
     呼び出し元 -- (iniファイルに書き込む)
     (iniファイルを読み込む) <-- IniFile
     (iniファイルに書き込む) --> IniFile
-    (セクション一覧読み込み) ..> (iniファイルを読み込む) : include
-    (iniファイルを読み込む) <. (キー一覧読み込み) : include
-    (iniファイルを読み込む) <.. (値読み込み) : include
+  }
+  rectangle LogWriter {
+    呼び出し元 -- (ログファイルに書き込む)
+    (ログファイルに書き込む) --> LogFile
+  }
+  rectangle CsvWriter {
+    呼び出し元 -- (CSVファイルに書き込む)
+    (CSVファイルに書き込む) --> CsvFile
   }
 }
 

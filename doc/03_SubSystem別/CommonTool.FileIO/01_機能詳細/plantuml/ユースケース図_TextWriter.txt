@@ -1,0 +1,24 @@
+@startuml ..\ユースケース図_TextWriter.png
+
+left to right direction
+
+file "テキストファイル" as TextFile
+
+rectangle CommonTool.FileIO {
+  component IniControl
+  component LogWriter
+  component CsvWriter
+  rectangle TextWriter {
+    (ファイルの存在チェック)
+    (テキストファイル出力)
+  }
+  
+  IniControl --> (ファイルの存在チェック)
+  LogWriter --> (ファイルの存在チェック)
+  LogWriter --> (テキストファイル出力)
+  CsvWriter --> (ファイルの存在チェック)
+  CsvWriter --> (テキストファイル出力)
+  (テキストファイル出力) --> TextFile
+}
+
+@enduml
