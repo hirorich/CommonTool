@@ -4,10 +4,8 @@ package CommonTool {
   component Command
   component Image #lightgrey
   component DB
-  component Ini
-  component TextFile
+  component FileIO
   component Excel
-  component Log
 }
 
 database DBServer
@@ -34,9 +32,6 @@ file ".ini" as IniFile
 file ".env" as env
 file .png as png #lightgrey
 
-callLog -(0- Log
-Log --> ログファイル
-
 callCommand -(0- Command
 Command -(0- 外部コマンド
 Command <-- env
@@ -55,11 +50,10 @@ DB -(0- DBServer
 DBServer <|-- SQLServer
 DBServer <|-- Access
 
-callIni -(0- Ini
-Ini <--> IniFile
-
-callTextFile -(0- TextFile
-TextFile --> text
+callFileIO -(0- FileIO
+FileIO --> ログファイル
+FileIO <--> IniFile
+FileIO --> text
 text <|-- csv
 text <|-- xml
 text <|-- json
