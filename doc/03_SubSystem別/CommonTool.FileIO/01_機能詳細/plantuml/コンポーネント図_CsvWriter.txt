@@ -3,8 +3,6 @@
 interface "呼び出し元" as caller
 
 component "CommonTool.FileIO.dll" as FileIO {
-  rectangle IniControl
-  rectangle LogWriter
   rectangle CsvWriter {
     (CSVファイルに書き込む)
   }

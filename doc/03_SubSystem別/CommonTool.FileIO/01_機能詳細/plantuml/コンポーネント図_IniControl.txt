@@ -7,8 +7,6 @@ component "CommonTool.FileIO.dll" as FileIO {
     (iniファイルに書き込む)
     (iniファイルを読み込む)
   }
-  rectangle LogWriter
-  rectangle CsvWriter
   rectangle TextWriter {
     (ファイルの存在チェック)
   }
