@@ -1,13 +1,10 @@
 @startuml ..\アクティビティ図_iniファイルに書き込む.png
 
 |IniControl|
-|FileUtil|
 |KERNEL32.dll|
 
 |IniControl|
 start
-
-|FileUtil|
 :対象ファイルの存在チェック;
 
 |KERNEL32.dll|
