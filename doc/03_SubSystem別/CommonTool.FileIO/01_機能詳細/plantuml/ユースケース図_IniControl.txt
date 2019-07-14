@@ -11,9 +11,9 @@ rectangle CommonTool.FileIO {
     呼び出し元 -- (iniファイルに書き込む)
     (iniファイルを読み込む) <-- IniFile
     (iniファイルに書き込む) --> IniFile
-    (セクション一覧読み込み) ..> (iniファイルを読み込む) : include
-    (iniファイルを読み込む) <. (キー一覧読み込み) : include
-    (iniファイルを読み込む) <.. (値読み込み) : include
+    (セクション一覧読み込み) <.. (iniファイルを読み込む) : extends
+    (iniファイルを読み込む) .> (キー一覧読み込み) : extends
+    (iniファイルを読み込む) ..> (値読み込み) : extends
   }
 }
 

@@ -11,8 +11,8 @@ rectangle CommonTool.FileIO {
   rectangle LogWriter {
     呼び出し元 -- (ログファイルに書き込む)
     (ログファイルに書き込む) --> LogFile
-    (内部部品を使用) <. (ログファイルに書き込む) : extends
-    (ログファイルに書き込む) .> (外部部品を使用) : extends
+    (内部部品を使用) .> (ログファイルに書き込む) : include
+    (ログファイルに書き込む) <. (外部部品を使用) : include
     (外部部品を使用) .. OtherLogWriter
     OtherLogWriter --> LogFile
   }
