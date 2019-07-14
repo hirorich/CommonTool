@@ -7,15 +7,11 @@ CommonTool.Image.dll
 CommonTool.DB.dll
   クエリを実行し結果を得る
 
-CommonTool.Ini.dll
+CommonTool.FileIO.dll
   iniファイルを読み書きする
-
-CommonTool.TextFile.dll
   テキストファイルに出力する
+  ログファイルに出力する
 
 CommonTool.Excel.dll
   Excelファイルに出力する
-
-CommonTool.Log.dll
-  ログファイルに出力する
 
