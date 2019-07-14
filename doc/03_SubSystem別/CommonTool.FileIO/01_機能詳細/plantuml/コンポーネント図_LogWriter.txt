@@ -7,7 +7,6 @@ component "CommonTool.FileIO.dll" as FileIO {
     (ログファイルに書き込む)
   }
   rectangle TextWriter {
-    (ファイルの存在チェック)
     (テキストファイル出力)
   }
 }
@@ -18,9 +17,7 @@ file ".log" as LogFile
 
 caller --> (ログファイルに書き込む)
 
-(ファイルの存在チェック) <-- LogWriter
 (テキストファイル出力) <-- LogWriter
-
 (テキストファイル出力) --> LogFile
 
 LogWriter --> OtherLogWriter

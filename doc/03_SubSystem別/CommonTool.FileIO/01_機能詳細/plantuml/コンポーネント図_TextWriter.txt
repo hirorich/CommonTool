@@ -14,9 +14,7 @@ rectangle CommonTool.FileIO {
   }
   
   IniControl --> (ファイルの存在チェック)
-  LogWriter --> (ファイルの存在チェック)
   LogWriter --> (テキストファイル出力)
-  CsvWriter --> (ファイルの存在チェック)
   CsvWriter --> (テキストファイル出力)
   (テキストファイル出力) --> TextFile
 }
