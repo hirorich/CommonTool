@@ -1,0 +1,22 @@
+@startuml ..\アクティビティ図_文字列を書き込む.png
+
+|CsvWriter|
+|TextWriter|
+
+|CsvWriter|
+start
+:サニタイズ;
+
+|TextWriter|
+partition 出力内容を出力 {
+    if (上書き or 追加) then (上書き)
+        :出力先ファイルに出力内容を出力(上書き);
+    else (追加)
+        :出力先ファイルに出力内容を出力(追加);
+    endif
+}
+
+|CsvWriter|
+stop
+
+@enduml

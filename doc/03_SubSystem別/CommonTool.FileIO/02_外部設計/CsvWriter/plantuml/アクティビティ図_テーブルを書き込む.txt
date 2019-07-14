@@ -1,0 +1,42 @@
+@startuml ..\アクティビティ図_テーブルを書き込む.png
+
+|CsvWriter|
+start
+if (列名出力する？) then (出力する)
+    partition 列名出力 {
+        :列名を文字列配列に変換;
+        if (上書き or 追加) then (追加)
+            :文字列配列を書き込む(追加)|
+        else (上書き)
+            :文字列配列を書き込む(上書き)|
+        endif
+    }
+endif
+
+partition 値出力 {
+    while (行ごとに処理)
+        while (列ごとに処理)
+            :値を文字列に変換;
+        endwhile
+        :変換した各値を文字列配列に変換;
+
+        if (上書き or 追加) then (追加)
+            :文字列配列を書き込む(追加)|
+        else (上書き)
+            if (1回目？) then (1回目)
+                if (列名出力済み？) then (出力済み)
+                    :文字列配列を書き込む(追加)|
+                else (未出力)
+                    :文字列配列を書き込む(上書き)|
+                endif
+            else (2回目以降)
+                :文字列配列を書き込む(追加)|
+            endif
+        endif
+
+    endwhile
+}
+
+stop
+
+@enduml
