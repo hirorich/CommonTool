@@ -1,4 +1,4 @@
-@startuml ..\ユースケース図_TextWriter.png
+@startuml ..\コンポーネント図_TextWriter.png
 
 left to right direction
 
