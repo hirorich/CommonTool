@@ -1,0 +1,22 @@
+@startuml ..\アクティビティ図_ログファイルに書き込む.png
+
+|LogWriter|
+|TextWriter|
+|外部部品|
+
+|LogWriter|
+start
+if (外部部品で出力？) then (No)
+    :出力先ファイルを指定;
+    :出力内容の整形;
+    |TextWriter|
+    :出力先ファイルに出力内容を出力(追加);
+    |LogWriter|
+    stop
+else (Yes)
+    |外部部品|
+    :ログを出力する;
+    stop
+endif
+
+@enduml
