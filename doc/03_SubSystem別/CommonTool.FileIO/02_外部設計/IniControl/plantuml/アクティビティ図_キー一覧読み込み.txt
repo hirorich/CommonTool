@@ -1,13 +1,13 @@
 @startuml ..\アクティビティ図_キー一覧読み込み.png
 
 |IniControl|
-|TextWriter|
+|FileUtil|
 |KERNEL32.dll|
 
 |IniControl|
 start
 
-|TextWriter|
+|FileUtil|
 :対象ファイルの存在チェック;
 
 |KERNEL32.dll|

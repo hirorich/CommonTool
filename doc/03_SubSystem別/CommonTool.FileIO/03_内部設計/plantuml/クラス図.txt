@@ -1,0 +1,24 @@
+@startuml ..\ÉNÉâÉXê}.png
+
+package CommonTool.FileIO {
+    class CsvWriter
+    class IniControl
+    class LogWriter
+    class FileUtil
+
+    package WinAPI {
+        class Kernel32
+    }
+
+    package Log {
+        interface ILogWriter
+        class LogWriterImpl
+        ILogWriter <|.. LogWriterImpl
+    }
+
+    package Text {
+        class TextWriter
+    }
+}
+
+@enduml
