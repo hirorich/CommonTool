@@ -1,0 +1,20 @@
+@startuml ..\アクティビティ図_値読み込み.png
+
+|IniControl|
+|TextWriter|
+|KERNEL32.dll|
+
+|IniControl|
+start
+
+|TextWriter|
+:対象ファイルの存在チェック;
+
+|KERNEL32.dll|
+:GetPrivateProfileString;
+
+|IniControl|
+:取得内容から値取得;
+stop
+
+@enduml
