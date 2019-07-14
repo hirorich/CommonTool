@@ -22,10 +22,6 @@ rectangle CommonTool.FileIO as FileIO {
     呼び出し元 -- (CSVファイルに書き込む)
     (CSVファイルに書き込む) --> CsvFile
   }
-  rectangle TextWriter {
-    (ファイルの存在チェック)
-    (テキストファイル出力)
-  }
 }
 
 @enduml
