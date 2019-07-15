@@ -1,23 +1,77 @@
 @startuml ..\ÉNÉâÉXê}.png
 
 package CommonTool.FileIO {
-    class CsvWriter
-    class IniControl
-    class LogUtil
-    class FileUtil
+    class CsvWriter {
+      - m_filename:String
+      
+      + New(filename:String)
+      + WriteOver(data:String)
+      + WriteAppend(data:String)
+      + WriteOver(data:String())
+      + WriteAppend(data:String())
+      - Write(data:String(), append:Boolean)
+      + WriteOver(data:DataTable, colname:Boolean)
+      + WriteAppend(data:DataTable, colname:Boolean)
+      - Write(data:DataTable, colname:Boolean, append:Boolean)
+    }
+
+    class IniControl {
+      - m_filename:String
+      
+      + New(filename:String)
+      + ReadSections():String()
+      + ReadKeys(section:String):String()
+      + ReadValue(section:String, key:String):String
+      + WriteValue(section:String, key:String, value:String)
+    }
+
+    class LogUtil {
+      - {static}m_LogWriterImpl:ILogWriter
+      
+      - New()
+      + {static}LogWriterImpl(impl:ILogWriter)
+      + {static}WriteLog(data:String, Optional option:Collection = Nothing)
+      + {static}WriteLog(data:Exception, Optional option:Collection = Nothing)
+    }
+
+    class FileUtil {
+      + {static}Exist(filename:String)
+    }
 
     package WinAPI {
-        class Kernel32
+        class Kernel32 {
+          + {static}WritePrivateProfileString()
+          + {static}GetPrivateProfileSection()
+          + {static}GetPrivateProfileSectionNames()
+          + {static}GetPrivateProfileString()
+        }
     }
 
     package Log {
-        interface ILogWriter
-        class LogWriterImpl
+        interface ILogWriter {
+          + WriteLog(data:String, Optional option:Collection = Nothing)
+          + WriteLog(data:Exception, Optional option:Collection = Nothing)
+        }
+
+        class LogWriterImpl {
+          + WriteLog(data:String, Optional option:Collection = Nothing)
+          + WriteLog(data:Exception, Optional option:Collection = Nothing)
+        }
         ILogWriter <|.. LogWriterImpl
     }
+    LogUtil *-- ILogWriter
 
     package Text {
-        class TextWriter
+        class TextWriter {
+          - m_filename:String
+          
+          + New(filename:String)
+          + WriteOver(data:String)
+          + WriteAppend(data:String)
+          + WriteOver(data:String())
+          + WriteAppend(data:String())
+          - Write(data:String(), append:Boolean)
+        }
     }
 }
 

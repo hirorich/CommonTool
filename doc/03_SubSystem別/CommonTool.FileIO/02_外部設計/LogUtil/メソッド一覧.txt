@@ -1,0 +1,18 @@
+CommonTool.Command.dll
+  <name>
+    Public LogUtil
+      ログファイルに出力する
+
+  <field>
+    Private Shared m_LogWriterImpl As ILogWriter
+      実装クラス
+
+  <method>
+    Private New()
+
+    Public Shared WriteOnly Property LogWriterImpl(ByVal impl As ILogWriter)
+      実装クラスを指定
+
+    Public Shared WriteLog(ByVal data As String, ByVal option As Collection)
+    Public Shared WriteLog(ByVal data As Exception, ByVal option As Collection)
+      ログファイルに書き込む

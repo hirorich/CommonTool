@@ -1,0 +1,21 @@
+CommonTool.FileIO.dll
+  <name>
+    Friend TextWriter
+      テキストファイルに出力する
+
+  <field>
+    Private m_filename As String
+      ファイル名
+
+  <method>
+    Public New(ByVal filename As String)
+      書き込み先ファイル名指定
+
+    Public WriteOver(ByVal data As String)
+    Public WriteAppend(ByVal data As String)
+      文字列を書き込む
+
+    Public WriteOver(ByVal data As String())
+    Public WriteAppend(ByVal data As String())
+    Private Write(ByVal data As String(), ByVal append As Boolean)
+      文字列配列を書き込む

@@ -1,0 +1,24 @@
+CommonTool.Command.dll
+  <name>
+    Public IniContril
+      iniファイルを読み書きする
+
+  <field>
+    Private m_filename As String
+      ファイル名
+
+  <method>
+    Public New(ByVal filename As String)
+      書き込み先ファイル名指定
+
+    Public ReadSections()
+      セクション一覧読み込み
+
+    Public ReadKeys(ByVal section As String)
+      キー一覧読み込み
+
+    Public ReadValue(ByVal section As String, ByVal key As String)
+      値読み込み
+
+    Public WriteValue(ByVal section As String, ByVal key As String, ByVal value As String)
+      iniファイルに書き込む
