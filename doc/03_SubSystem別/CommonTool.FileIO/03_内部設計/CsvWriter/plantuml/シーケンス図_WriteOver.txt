@@ -1,0 +1,23 @@
+@startuml ..\シーケンス図_WriteOver.png
+
+[-> CsvWriter: WriteOver()
+activate CsvWriter
+
+CsvWriter -> CsvWriter: Write()
+activate CsvWriter
+
+CsvWriter -> TextWriter: WriteOver()
+activate TextWriter
+
+TextWriter -> TextWriter: Write()
+activate TextWriter
+
+deactivate TextWriter
+CsvWriter <-- TextWriter
+deactivate TextWriter
+
+deactivate CsvWriter
+[<-- CsvWriter
+deactivate CsvWriter
+
+@enduml
