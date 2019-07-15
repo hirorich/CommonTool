@@ -1,9 +1,9 @@
-@startuml ..\コンポーネント図_LogWriter.png
+@startuml ..\コンポーネント図_LogUtil.png
 
 interface "呼び出し元" as caller
 
 component "CommonTool.FileIO.dll" as FileIO {
-  rectangle LogWriter {
+  rectangle LogUtil {
     (ログファイルに書き込む)
   }
   rectangle TextWriter {
@@ -17,10 +17,10 @@ file ".log" as LogFile
 
 caller --> (ログファイルに書き込む)
 
-(テキストファイル出力) <-- LogWriter
+(テキストファイル出力) <-- LogUtil
 (テキストファイル出力) --> LogFile
 
-LogWriter --> OtherLogWriter
+LogUtil --> OtherLogWriter
 OtherLogWriter --> LogFile
 
 @enduml

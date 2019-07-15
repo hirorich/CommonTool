@@ -14,7 +14,7 @@ rectangle CommonTool.FileIO as FileIO {
     (iniファイルを読み込む) <-- IniFile
     (iniファイルに書き込む) --> IniFile
   }
-  rectangle LogWriter {
+  rectangle LogUtil {
     呼び出し元 -- (ログファイルに書き込む)
     (ログファイルに書き込む) --> LogFile
   }

@@ -4,7 +4,7 @@ interface "ŒÄ‚Ño‚µŒ³" as caller
 
 component "CommonTool.FileIO.dll" as FileIO {
   rectangle IniControl
-  rectangle LogWriter
+  rectangle LogUtil
   rectangle CsvWriter
   rectangle TextWriter
 }
@@ -20,16 +20,16 @@ file ".log" as LogFile
 file ".csv" as CsvFile
 
 caller --> IniControl
-caller --> LogWriter
+caller --> LogUtil
 caller --> CsvWriter
 
 IniControl --> kernel32
 kernel32 --> IniFile
 
 IniControl --> TextWriter
-LogWriter --> TextWriter
+LogUtil --> TextWriter
 TextWriter --> LogFile
-LogWriter --> OtherLogWriter
+LogUtil --> OtherLogWriter
 OtherLogWriter --> LogFile
 CsvWriter --> TextWriter
 TextWriter --> CsvFile

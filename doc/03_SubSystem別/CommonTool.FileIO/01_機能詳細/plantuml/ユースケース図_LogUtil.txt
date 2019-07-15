@@ -1,4 +1,4 @@
-@startuml ..\ユースケース図_LogWriter.png
+@startuml ..\ユースケース図_LogUtil.png
 
 left to right direction
 
@@ -8,7 +8,7 @@ file ".log" as LogFile
 component "外部部品" as OtherLogWriter
 
 rectangle CommonTool.FileIO {
-  rectangle LogWriter {
+  rectangle LogUtil {
     呼び出し元 -- (ログファイルに書き込む)
     (ログファイルに書き込む) --> LogFile
     (内部部品を使用) .> (ログファイルに書き込む) : include

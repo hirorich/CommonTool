@@ -3,7 +3,7 @@
 package CommonTool.FileIO {
     class CsvWriter
     class IniControl
-    class LogWriter
+    class LogUtil
     class FileUtil
 
     package WinAPI {
