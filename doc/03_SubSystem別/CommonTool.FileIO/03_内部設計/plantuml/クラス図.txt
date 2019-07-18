@@ -49,6 +49,12 @@ package CommonTool.FileIO {
         }
     }
 
+    package Csv {
+        class CsvUtil {
+          + {static}Sanitize(data:String):String
+        }
+    }
+
     package Log {
         interface ILogWriter {
           + WriteLog(data:String, Optional option:Collection = Nothing)
