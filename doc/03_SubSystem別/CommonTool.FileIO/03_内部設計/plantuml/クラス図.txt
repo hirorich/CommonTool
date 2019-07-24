@@ -29,9 +29,9 @@ package CommonTool.FileIO {
       - {static}m_LogWriterImpl:ILogWriter
       
       - New()
-      + {static}LogWriterImpl(impl:ILogWriter)
-      + {static}WriteLog(data:String, Optional option:Collection = Nothing)
-      + {static}WriteLog(data:Exception, Optional option:Collection = Nothing)
+      + {static}LogWriterImpl(value:ILogWriter)
+      + {static}WriteLog(data:String, Optional optionArgs:Collection = Nothing)
+      + {static}WriteLog(data:Exception, Optional optionArgs:Collection = Nothing)
     }
 
     class FileUtil {
@@ -57,13 +57,13 @@ package CommonTool.FileIO {
 
     package Log {
         interface ILogWriter {
-          + WriteLog(data:String, Optional option:Collection = Nothing)
-          + WriteLog(data:Exception, Optional option:Collection = Nothing)
+          + WriteLog(data:String, Optional optionArgs:Collection = Nothing)
+          + WriteLog(data:Exception, Optional optionArgs:Collection = Nothing)
         }
 
         class LogWriterImpl {
-          + WriteLog(data:String, Optional option:Collection = Nothing)
-          + WriteLog(data:Exception, Optional option:Collection = Nothing)
+          + WriteLog(data:String, Optional optionArgs:Collection = Nothing)
+          + WriteLog(data:Exception, Optional optionArgs:Collection = Nothing)
         }
         ILogWriter <|.. LogWriterImpl
     }
