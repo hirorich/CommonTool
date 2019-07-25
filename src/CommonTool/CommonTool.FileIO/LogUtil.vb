@@ -34,10 +34,14 @@ Public Class LogUtil
     ''' <param name="data">出力対象文字列</param>
     ''' <param name="optionArgs">出力オプション</param>
     Public Shared Sub WriteLog(ByVal data As String, ByVal Optional optionArgs As Collection = Nothing)
-        If m_LogWriterImpl Is Nothing Then
-            m_LogWriterImpl = New LogWriterImpl
-        End If
-        Call m_LogWriterImpl.WriteLog(data, optionArgs)
+        Try
+            If m_LogWriterImpl Is Nothing Then
+                m_LogWriterImpl = New LogWriterImpl
+            End If
+            Call m_LogWriterImpl.WriteLog(data, optionArgs)
+        Catch ex As Exception
+            ' 例外は潰す
+        End Try
     End Sub
 
     ''' <summary>
@@ -46,10 +50,14 @@ Public Class LogUtil
     ''' <param name="data">出力対象例外</param>
     ''' <param name="optionArgs">出力オプション</param>
     Public Shared Sub WriteLog(ByVal data As Exception, ByVal Optional optionArgs As Collection = Nothing)
-        If m_LogWriterImpl Is Nothing Then
-            m_LogWriterImpl = New LogWriterImpl
-        End If
-        Call m_LogWriterImpl.WriteLog(data, optionArgs)
+        Try
+            If m_LogWriterImpl Is Nothing Then
+                m_LogWriterImpl = New LogWriterImpl
+            End If
+            Call m_LogWriterImpl.WriteLog(data, optionArgs)
+        Catch ex As Exception
+            ' 例外は潰す
+        End Try
     End Sub
 
 End Class
