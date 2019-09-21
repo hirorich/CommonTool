@@ -51,6 +51,23 @@ Namespace TestCase
                     Call LogUtil.WriteLog(ex)
                 End Try
 
+                Try
+                    sections = Nothing
+                    control = New IniControl("..\..\INI\Nothing.ini")
+
+                    sections = control.ReadSections()
+                    If sections Is Nothing Then
+                        Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                            "セクションの取得結果はNothing"
+                    Else
+                        Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                            "セクション一覧: " & String.Join(", ", sections).Trim
+                    End If
+
+                Catch ex As Exception
+                    Call LogUtil.WriteLog(ex)
+                End Try
+
                 Return True
             Catch ex As Exception
                 Throw

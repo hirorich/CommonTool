@@ -146,6 +146,22 @@ Namespace TestCase
                 End Try
 
 
+                Try
+                    control = New IniControl("..\..\INI\Nothing.ini")
+                    section = "Section1"
+                    keys = control.ReadKeys(section)
+                    If keys Is Nothing Then
+                        Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                            "セクション " & section & " の取得結果はNothing"
+                    Else
+                        Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                    End If
+                Catch ex As Exception
+                    Call LogUtil.WriteLog(ex)
+                End Try
+
+
 
                 Return True
             Catch ex As Exception

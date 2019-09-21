@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="INI\Test.ini" />
+    <None Include="INI\TestFoo.ini" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

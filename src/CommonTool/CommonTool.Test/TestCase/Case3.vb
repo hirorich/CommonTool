@@ -55,6 +55,22 @@ Namespace TestCase
                     Call LogUtil.WriteLog(ex)
                 End Try
 
+
+
+                Try
+                    control = New IniControl("..\..\INI\Nothing.ini")
+                    section = "Section6"
+                    key = "key1"
+                    value = "AfterValue1"
+                    Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                        "Before: Section:" & section & ", Key:" & key & ", Value:" & control.ReadValue(section, key)
+                    Call control.WriteValue(section, key, value)
+                    Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                        "After : Section:" & section & ", Key:" & key & ", Value:" & control.ReadValue(section, key)
+                Catch ex As Exception
+                    Call LogUtil.WriteLog(ex)
+                End Try
+
                 Return True
             Catch ex As Exception
                 Throw
