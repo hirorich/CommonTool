@@ -64,7 +64,7 @@ Namespace Log
                 listOutput.Add(Date.Now.ToString("yyyy/MM/dd hh:mm:ss.fff"))   ' 日時
                 listOutput.Add(Environment.MachineName)                        ' 端末名
                 listOutput.Add(Environment.UserName)                           ' ユーザ名
-                listOutput.Add(Escape(data))                                   ' 出力対象文字列
+                listOutput.Add(Sanitize(data))                                   ' 出力対象文字列
 
                 ' 出力内容書き込み
                 Dim writer As TextWriter = New TextWriter(Me.m_Filename)
@@ -76,19 +76,19 @@ Namespace Log
         End Sub
 
         ''' <summary>
-        ''' エスケープ処理
+        ''' サニタイズ処理
         ''' </summary>
         ''' <param name="data"></param>
         ''' <returns></returns>
-        Private Shared Function Escape(ByVal data As String) As String
+        Friend Shared Function Sanitize(ByVal data As String) As String
             Try
 
-                ' ダブルクォートをエスケープ
-                Escape = SpecialCharacter.g_DoubleQuote &
+                ' ダブルクォートをサニタイズ
+                Sanitize = SpecialCharacter.g_DoubleQuote &
                     data.Replace(SpecialCharacter.g_DoubleQuote, SpecialCharacter.g_DoubleQuote & SpecialCharacter.g_DoubleQuote) &
                     SpecialCharacter.g_DoubleQuote
             Catch ex As Exception
-                Escape = String.Empty
+                Sanitize = String.Empty
             End Try
         End Function
 

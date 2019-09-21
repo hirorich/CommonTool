@@ -62,10 +62,18 @@ package CommonTool.FileIO {
         }
 
         class LogWriterImpl {
+          - m_filename:String
+          
           ~ WriteLog(data:String, Optional optionArgs:Collection = Nothing)
           ~ WriteLog(data:Exception, Optional optionArgs:Collection = Nothing)
+          - WriteLog(data:String, level:String)
+          ~ {static}Sanitize(data:String):String
         }
         ILogWriter <|.. LogWriterImpl
+
+        package Const as Log.Const {
+            class LogLevel
+        }
     }
     LogUtil *-- ILogWriter
 
@@ -80,6 +88,10 @@ package CommonTool.FileIO {
           ~ WriteAppend(data:String())
           - Write(data:String(), append:Boolean)
         }
+    }
+
+    package Const as FileIO.Const {
+        class SpecialCharacter
     }
 }
 
