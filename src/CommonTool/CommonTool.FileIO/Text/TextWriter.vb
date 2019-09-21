@@ -75,11 +75,11 @@ Namespace Text
         ''' <param name="append">True:追記モード/False:上書きモード</param>
         Private Sub Write(ByVal data As String(), ByVal append As Boolean)
             Try
-                Using writter As StreamWriter = New StreamWriter(Me.m_Filename, append)
+                Using writer As StreamWriter = New StreamWriter(Me.m_Filename, append)
 
                     ' 1行ごとに書き込む
                     For Each text As String In data
-                        writter.WriteLine(text)
+                        writer.WriteLine(text)
                     Next
                 End Using
             Catch ex As Exception

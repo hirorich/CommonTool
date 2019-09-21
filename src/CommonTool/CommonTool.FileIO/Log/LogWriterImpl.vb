@@ -67,8 +67,8 @@ Namespace Log
                 listOutput.Add(Escape(data))                                   ' 出力対象文字列
 
                 ' 出力内容書き込み
-                Dim writter As TextWriter = New TextWriter(Me.m_Filename)
-                writter.WriteAppend(String.Join(SpecialCharacter.g_Comma, listOutput))
+                Dim writer As TextWriter = New TextWriter(Me.m_Filename)
+                writer.WriteAppend(String.Join(SpecialCharacter.g_Comma, listOutput))
 
             Catch ex As Exception
                 Throw
