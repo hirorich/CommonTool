@@ -45,7 +45,7 @@ Public Class LogUtil
     End Sub
 
     ''' <summary>
-    ''' ログを出力する
+    ''' 例外ログを出力する
     ''' </summary>
     ''' <param name="data">出力対象例外</param>
     ''' <param name="optionArgs">出力オプション</param>

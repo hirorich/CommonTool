@@ -14,7 +14,7 @@
         Sub WriteLog(ByVal data As String, ByVal Optional optionArgs As Collection = Nothing)
 
         ''' <summary>
-        ''' ログを出力する
+        ''' 例外ログを出力する
         ''' </summary>
         ''' <param name="data">出力対象例外</param>
         ''' <param name="optionArgs">出力オプション</param>

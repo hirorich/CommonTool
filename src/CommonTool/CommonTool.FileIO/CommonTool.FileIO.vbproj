@@ -64,12 +64,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Const\SpecialCharacter.vb" />
     <Compile Include="CsvWriter.vb" />
     <Compile Include="Csv\CsvUtil.vb" />
     <Compile Include="FileUtil.vb" />
     <Compile Include="IniControl.vb" />
     <Compile Include="LogUtil.vb" />
     <Compile Include="Log\ILogWriter.vb" />
+    <Compile Include="Log\Const\LogLevel.vb" />
     <Compile Include="Log\LogWriterImpl.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
