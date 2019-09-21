@@ -18,7 +18,7 @@ rectangle CommonTool.FileIO as FileIO {
     呼び出し元 -- (ログファイルに書き込む)
     (ログファイルに書き込む) --> LogFile
   }
-  rectangle CsvWriter {
+  rectangle CsvUtil {
     呼び出し元 -- (CSVファイルに書き込む)
     (CSVファイルに書き込む) --> CsvFile
   }

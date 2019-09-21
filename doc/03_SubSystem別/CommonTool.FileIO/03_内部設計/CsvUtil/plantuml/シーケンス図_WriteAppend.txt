@@ -1,0 +1,29 @@
+@startuml ..\シーケンス図_WriteAppend.png
+
+[-> CsvUtil: WriteAppend()
+activate CsvUtil
+
+CsvUtil-> CsvWriter: WriteAppend()
+activate CsvWriter
+
+CsvWriter -> CsvWriter: Write()
+activate CsvWriter
+
+CsvWriter -> TextWriter: WriteAppend()
+activate TextWriter
+
+TextWriter -> TextWriter: Write()
+activate TextWriter
+
+deactivate TextWriter
+CsvWriter <-- TextWriter
+deactivate TextWriter
+
+deactivate CsvWriter
+CsvUtil <-- CsvWriter
+deactivate CsvWriter
+
+[<-- CsvUtil
+deactivate CsvUtil
+
+@enduml

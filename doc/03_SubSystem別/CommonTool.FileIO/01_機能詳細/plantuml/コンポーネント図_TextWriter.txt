@@ -7,7 +7,7 @@ file "テキストファイル" as TextFile
 rectangle CommonTool.FileIO {
   component IniControl
   component LogUtil
-  component CsvWriter
+  component CsvUtil
   rectangle TextWriter {
     (ファイルの存在チェック)
     (テキストファイル出力)
@@ -15,7 +15,7 @@ rectangle CommonTool.FileIO {
   
   IniControl --> (ファイルの存在チェック)
   LogUtil --> (テキストファイル出力)
-  CsvWriter --> (テキストファイル出力)
+  CsvUtil --> (テキストファイル出力)
   (テキストファイル出力) --> TextFile
 }
 

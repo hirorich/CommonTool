@@ -1,6 +1,6 @@
 ﻿Namespace Csv
 
-    Friend Class CsvUtil
+    Friend Class CsvWriter
 
     End Class
 

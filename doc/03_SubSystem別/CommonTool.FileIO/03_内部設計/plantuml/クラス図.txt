@@ -1,18 +1,8 @@
 @startuml ..\ÉNÉâÉXê}.png
 
 package CommonTool.FileIO {
-    class CsvWriter {
-      - m_filename:String
-      
-      + New(filename:String)
-      + WriteOver(data:String)
-      + WriteAppend(data:String)
-      + WriteOver(data:String())
-      + WriteAppend(data:String())
-      - Write(data:String(), append:Boolean)
-      + WriteOver(data:DataTable, colname:Boolean)
-      + WriteAppend(data:DataTable, colname:Boolean)
-      - Write(data:DataTable, colname:Boolean, append:Boolean)
+    class CsvUtil {
+      ~ {static}Sanitize(data:String):String
     }
 
     class IniControl {
@@ -50,8 +40,18 @@ package CommonTool.FileIO {
     }
 
     package Csv {
-        class CsvUtil {
-          ~ {static}Sanitize(data:String):String
+        class CsvWriter {
+          - m_filename:String
+          
+          + New(filename:String)
+          + WriteOver(data:String)
+          + WriteAppend(data:String)
+          + WriteOver(data:String())
+          + WriteAppend(data:String())
+          - Write(data:String(), append:Boolean)
+          + WriteOver(data:DataTable, colname:Boolean)
+          + WriteAppend(data:DataTable, colname:Boolean)
+          - Write(data:DataTable, colname:Boolean, append:Boolean)
         }
     }
 
