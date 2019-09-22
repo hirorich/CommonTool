@@ -55,6 +55,39 @@ Namespace TestCase
                     Call LogUtil.WriteLog(ex)
                 End Try
 
+                Try
+                    section = "Section7"
+                    key = String.Empty
+                    value = "AfterValue7-2"
+                    Call control.WriteValue(section, key, value)
+                    Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                        "After : Section:" & section & ", Key:" & key & ", Value:" & control.ReadValue(section, key)
+                Catch ex As Exception
+                    Call LogUtil.WriteLog(ex)
+                End Try
+
+                Try
+                    section = "Section7"
+                    key = "key3"
+                    value = String.Empty
+                    Call control.WriteValue(section, key, value)
+                    Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                        "After : Section:" & section & ", Key:" & key & ", Value:" & control.ReadValue(section, key)
+                Catch ex As Exception
+                    Call LogUtil.WriteLog(ex)
+                End Try
+
+                Try
+                    section = "Section7"
+                    key = String.Empty
+                    value = "AfterValue7-2-2"
+                    Call control.WriteValue(section, key, value)
+                    Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                        "After : Section:" & section & ", Key:" & key & ", Value:" & control.ReadValue(section, key)
+                Catch ex As Exception
+                    Call LogUtil.WriteLog(ex)
+                End Try
+
 
 
                 Try
