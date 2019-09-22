@@ -1,7 +1,7 @@
 ﻿Namespace [Const]
 
     ''' <summary>
-    ''' バッファーザイズ
+    ''' バッファーサイズ
     ''' </summary>
     Public Class BufferSize
         Public Const g_8bit As Integer = 256

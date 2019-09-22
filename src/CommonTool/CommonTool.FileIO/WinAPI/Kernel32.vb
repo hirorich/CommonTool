@@ -2,6 +2,9 @@
 
 Namespace WinAPI
 
+    ''' <summary>
+    ''' kernel32.dll のラッパークラス
+    ''' </summary>
     Friend Class Kernel32
 
         ''' <summary>
