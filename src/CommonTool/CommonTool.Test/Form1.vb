@@ -11,6 +11,7 @@ Public Class Form1
         Me.cmbTestCase.Items.Add("Case4")
         Me.cmbTestCase.Items.Add("Case5")
         Me.cmbTestCase.Items.Add("Case6")
+        Me.cmbTestCase.Items.Add("Case7")
     End Sub
 
     Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
@@ -34,6 +35,8 @@ Public Class Form1
                     testcase = New Case5
                 Case "Case6"
                     testcase = New Case6
+                Case "Case7"
+                    testcase = New Case7
                 Case Else
                     Throw New Exception("未作成のケースです")
             End Select
