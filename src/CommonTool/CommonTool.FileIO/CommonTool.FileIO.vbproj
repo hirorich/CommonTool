@@ -65,6 +65,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Const\BufferSize.vb" />
     <Compile Include="Const\SpecialCharacter.vb" />
     <Compile Include="Csv\CsvWriter.vb" />
     <Compile Include="CsvUtil.vb" />

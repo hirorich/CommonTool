@@ -10,6 +10,7 @@
         Public Const g_Semicolon As String = ";"
         Public Const g_Comma As String = ","
         Public Const g_Period As String = "."
+        Public Const g_Equal As String = "="
     End Class
 
 End Namespace

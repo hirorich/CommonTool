@@ -78,8 +78,8 @@ Namespace Log
         ''' <summary>
         ''' サニタイズ処理
         ''' </summary>
-        ''' <param name="data"></param>
-        ''' <returns></returns>
+        ''' <param name="data">サニタイズ対象文字列</param>
+        ''' <returns>サニタイズ後文字列</returns>
         Friend Shared Function Sanitize(ByVal data As String) As String
             Try
 

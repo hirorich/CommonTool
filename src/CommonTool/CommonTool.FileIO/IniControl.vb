@@ -1,5 +1,6 @@
 ﻿Imports System.Text
 Imports CommonTool.FileIO.WinAPI
+Imports CommonTool.FileIO.Const
 
 ''' <summary>
 ''' iniファイル読み書きクラス
@@ -29,7 +30,7 @@ Public Class IniControl
         Try
 
             ' 値読み込み
-            Dim buffer As String = Space(1024)
+            Dim buffer As String = Space(BufferSize.g_10bit)
             Dim intRet As Integer = Kernel32.GetPrivateProfileSectionNames(buffer, buffer.Length - 1, Me.m_filename)
 
             ' 失敗時は例外をスロー
@@ -76,7 +77,7 @@ Public Class IniControl
             End If
 
             ' 値読み込み
-            Dim buffer As String = Space(1024)
+            Dim buffer As String = Space(BufferSize.g_16bit)
             Dim intRet As Integer = Kernel32.GetPrivateProfileSection(section.Trim, buffer, buffer.Length - 1, Me.m_filename)
 
             ' 失敗時は例外をスロー
@@ -95,7 +96,7 @@ Public Class IniControl
                 End If
 
                 ' キーが空白の場合飛ばす
-                key = keyvalue.Trim.Split("=")(0)
+                key = keyvalue.Trim.Split(SpecialCharacter.g_Equal)(0)
                 If String.IsNullOrWhiteSpace(key) Then
                     Continue For
                 End If
@@ -134,7 +135,7 @@ Public Class IniControl
             End If
 
             ' 値読み込み
-            Dim objBuilder As StringBuilder = New StringBuilder(1024)
+            Dim objBuilder As StringBuilder = New StringBuilder(BufferSize.g_10bit)
             Dim intRet As Integer = Kernel32.GetPrivateProfileString(section.Trim, key.Trim, String.Empty, objBuilder, objBuilder.Capacity - 1, Me.m_filename)
 
             ' 失敗時は例外をスロー
@@ -180,43 +181,5 @@ Public Class IniControl
             Throw
         End Try
     End Sub
-
-
-
-    ''' <summary>
-    ''' エスケープ文字変換
-    ''' </summary>
-    ''' <param name="strSet">設定文字列</param>
-    ''' <returns>変換後文字列</returns>
-    Private Shared Function SetEscape(ByVal strSet As String) As String
-        Dim strEscape As String() = {";", "#", "=", ":"}
-        Dim strRet As String = strSet
-        Try
-            For Each esc As String In strEscape
-                strRet = strRet.Replace(esc, "\" & esc)
-            Next
-            SetEscape = strRet
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
-
-    ''' <summary>
-    ''' エスケープ文字解除
-    ''' </summary>
-    ''' <param name="strSet">設定文字列</param>
-    ''' <returns>変換後文字列</returns>
-    Private Shared Function ResetEscape(ByVal strSet As String) As String
-        Dim strEscape As String() = {";", "#", "=", ":"}
-        Dim strRet As String = strSet
-        Try
-            For Each esc As String In strEscape
-                strRet = strRet.Replace("\" & esc, esc)
-            Next
-            ResetEscape = strRet
-        Catch ex As Exception
-            Throw
-        End Try
-    End Function
 
 End Class
