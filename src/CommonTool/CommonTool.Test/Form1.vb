@@ -1,5 +1,6 @@
 ﻿Imports CommonTool.Test.TestCase
 Imports CommonTool.FileIO
+Imports CommonTool.Test.TestCase.FileIO
 
 Public Class Form1
 

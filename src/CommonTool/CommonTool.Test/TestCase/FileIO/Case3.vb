@@ -1,6 +1,7 @@
 ﻿Imports CommonTool.FileIO
+Imports CommonTool.Test.TestCase
 
-Namespace TestCase
+Namespace TestCase.FileIO
 
     ''' <summary>
     ''' ケース：INI値書き込みテスト

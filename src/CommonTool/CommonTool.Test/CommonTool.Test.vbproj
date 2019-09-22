@@ -95,12 +95,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TestCase\Case6.vb" />
-    <Compile Include="TestCase\Case5.vb" />
-    <Compile Include="TestCase\Case4.vb" />
-    <Compile Include="TestCase\Case3.vb" />
-    <Compile Include="TestCase\Case2.vb" />
-    <Compile Include="TestCase\Case1.vb" />
+    <Compile Include="TestCase\FileIO\Case6.vb" />
+    <Compile Include="TestCase\FileIO\Case5.vb" />
+    <Compile Include="TestCase\FileIO\Case4.vb" />
+    <Compile Include="TestCase\FileIO\Case3.vb" />
+    <Compile Include="TestCase\FileIO\Case2.vb" />
+    <Compile Include="TestCase\FileIO\Case1.vb" />
     <Compile Include="TestCase\ICase.vb" />
   </ItemGroup>
   <ItemGroup>
