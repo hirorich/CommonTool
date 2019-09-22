@@ -69,7 +69,7 @@
     <Compile Include="Const\SpecialCharacter.vb" />
     <Compile Include="Csv\CsvWriter.vb" />
     <Compile Include="CsvUtil.vb" />
-    <Compile Include="FileUtil.vb" />
+    <Compile Include="FileUtil\FileChecker.vb" />
     <Compile Include="IniControl.vb" />
     <Compile Include="LogUtil.vb" />
     <Compile Include="Log\ILogWriter.vb" />

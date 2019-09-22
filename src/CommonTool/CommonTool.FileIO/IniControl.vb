@@ -1,6 +1,7 @@
 ﻿Imports System.Text
 Imports CommonTool.FileIO.WinAPI
 Imports CommonTool.FileIO.Const
+Imports CommonTool.FileIO.FileUtil
 
 ''' <summary>
 ''' iniファイル読み書きクラス
@@ -28,6 +29,9 @@ Public Class IniControl
     ''' <remarks>空文字のセクションは取得しない</remarks>
     Public Function ReadSections() As String()
         Try
+
+            ' ファイルの存在チェック
+            Call FileChecker.ExistFile(Me.m_filename)
 
             ' 値読み込み
             Dim buffer As String = Space(BufferSize.g_10bit)
@@ -70,6 +74,9 @@ Public Class IniControl
     ''' <remarks>空文字のセクション、キーは取得しない</remarks>
     Public Function ReadKeys(ByVal section As String) As String()
         Try
+
+            ' ファイルの存在チェック
+            Call FileChecker.ExistFile(Me.m_filename)
 
             ' セクションの入力チェック
             If String.IsNullOrWhiteSpace(section) Then
@@ -126,6 +133,9 @@ Public Class IniControl
     Public Function ReadValue(ByVal section As String, ByVal key As String) As String
         Try
 
+            ' ファイルの存在チェック
+            Call FileChecker.ExistFile(Me.m_filename)
+
             ' セクション、キーの入力チェック
             If String.IsNullOrWhiteSpace(section) Then
                 Throw New Exception()
@@ -158,6 +168,9 @@ Public Class IniControl
     ''' <remarks>空文字のセクション、キーは書き込まない</remarks>
     Public Sub WriteValue(ByVal section As String, ByVal key As String, ByVal value As String)
         Try
+
+            ' ファイルの存在チェック
+            Call FileChecker.ExistFile(Me.m_filename)
 
             ' セクション、キー、値の入力チェック
             If String.IsNullOrWhiteSpace(section) Then

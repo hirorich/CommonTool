@@ -5,6 +5,12 @@ Namespace WinAPI
     Friend Class Kernel32
 
         ''' <summary>
+        ''' コンストラクタ(非推奨)
+        ''' </summary>
+        Private Sub New()
+        End Sub
+
+        ''' <summary>
         ''' INIファイルからセクション一覧取得
         ''' </summary>
         ''' <param name="lpszReturnBuffer">取得した文字列</param>
