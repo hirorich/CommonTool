@@ -24,9 +24,11 @@ package CommonTool.FileIO {
       + {static}WriteLog(data:Exception, Optional optionArgs:Collection = Nothing)
     }
 
-    class FileUtil {
-      - New()
-      ~ {static}Exist(filename:String)
+    package FileUtil {
+        class FileChecker {
+          - New()
+          ~ {static}ExistFile(filename:String)
+        }
     }
 
     package WinAPI {
@@ -92,6 +94,7 @@ package CommonTool.FileIO {
 
     package Const as FileIO.Const {
         class SpecialCharacter
+        class BufferSize
     }
 }
 
