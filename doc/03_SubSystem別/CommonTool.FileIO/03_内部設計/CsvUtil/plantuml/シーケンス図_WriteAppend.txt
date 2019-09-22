@@ -3,10 +3,12 @@
 [-> CsvUtil: WriteAppend()
 activate CsvUtil
 
-CsvUtil-> CsvWriter: WriteAppend()
-activate CsvWriter
+CsvUtil -> FileChecker: ExistFile()
+activate FileChecker
+CsvUtil <-- FileChecker
+deactivate FileChecker
 
-CsvWriter -> CsvWriter: Write()
+CsvUtil-> CsvWriter: WriteAppend()
 activate CsvWriter
 
 CsvWriter -> TextWriter: WriteAppend()
@@ -19,7 +21,6 @@ deactivate TextWriter
 CsvWriter <-- TextWriter
 deactivate TextWriter
 
-deactivate CsvWriter
 CsvUtil <-- CsvWriter
 deactivate CsvWriter
 
