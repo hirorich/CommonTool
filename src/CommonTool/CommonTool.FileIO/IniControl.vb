@@ -27,6 +27,7 @@ Public Class IniControl
     ''' </summary>
     ''' <returns>セクション一覧</returns>
     ''' <remarks>空文字のセクションは取得しない</remarks>
+    ''' <exception cref="Exception"></exception>
     Public Function ReadSections() As String()
         Try
 
@@ -39,7 +40,7 @@ Public Class IniControl
 
             ' 失敗時は例外をスロー
             If intRet <= 0 Then
-                Throw New Exception()
+                Throw New Exception("ファイル：" & Me.m_filename & " のセクション一覧の取得に失敗しました")
             End If
 
             ' 空白以外を取得
@@ -56,7 +57,7 @@ Public Class IniControl
 
             ' 取得数が0の場合は例外をスロー
             If objSectionList.Count = 0 Then
-                Throw New Exception()
+                Throw New Exception("ファイル：" & Me.m_filename & " のセクション一覧の取得に失敗しました")
             End If
 
             ReadSections = objSectionList.ToArray
@@ -72,6 +73,8 @@ Public Class IniControl
     ''' <param name="section">セクション</param>
     ''' <returns>キー一覧</returns>
     ''' <remarks>空文字のセクション、キーは取得しない</remarks>
+    ''' <exception cref="ArgumentException"></exception>
+    ''' <exception cref="Exception"></exception>
     Public Function ReadKeys(ByVal section As String) As String()
         Try
 
@@ -80,7 +83,7 @@ Public Class IniControl
 
             ' セクションの入力チェック
             If String.IsNullOrWhiteSpace(section) Then
-                Throw New Exception()
+                Throw New ArgumentException("セクションに空白は指定できません")
             End If
 
             ' 値読み込み
@@ -89,7 +92,7 @@ Public Class IniControl
 
             ' 失敗時は例外をスロー
             If intRet <= 0 Then
-                Throw New Exception()
+                Throw New Exception("ファイル：" & Me.m_filename & ", セクション：" & section.Trim & "のキー一覧の取得に失敗しました")
             End If
 
             ' 空白以外からキーを取得
@@ -113,7 +116,7 @@ Public Class IniControl
 
             ' 取得数が0の場合は例外をスロー
             If objKeyList.Count = 0 Then
-                Throw New Exception()
+                Throw New Exception("ファイル：" & Me.m_filename & ", セクション：" & section.Trim & "のキー一覧の取得に失敗しました")
             End If
 
             ReadKeys = objKeyList.ToArray
@@ -130,6 +133,8 @@ Public Class IniControl
     ''' <param name="key">キー</param>
     ''' <returns>値</returns>
     ''' <remarks>空文字のセクション、キーは取得しない</remarks>
+    ''' <exception cref="ArgumentException"></exception>
+    ''' <exception cref="Exception"></exception>
     Public Function ReadValue(ByVal section As String, ByVal key As String) As String
         Try
 
@@ -138,10 +143,10 @@ Public Class IniControl
 
             ' セクション、キーの入力チェック
             If String.IsNullOrWhiteSpace(section) Then
-                Throw New Exception()
+                Throw New ArgumentException("セクションに空白は指定できません")
             End If
             If String.IsNullOrWhiteSpace(key) Then
-                Throw New Exception()
+                Throw New ArgumentException("キーに空白は指定できません")
             End If
 
             ' 値読み込み
@@ -150,7 +155,7 @@ Public Class IniControl
 
             ' 失敗時は例外をスロー
             If intRet <= 0 Then
-                Throw New Exception()
+                Throw New Exception("ファイル：" & Me.m_filename & ", セクション：" & section.Trim & ", キー：" & key.Trim & "の値の取得に失敗しました")
             End If
 
             ReadValue = objBuilder.ToString().Trim
@@ -166,6 +171,9 @@ Public Class IniControl
     ''' <param name="key">キー</param>
     ''' <param name="value">値</param>
     ''' <remarks>空文字のセクション、キーは書き込まない</remarks>
+    ''' <exception cref="ArgumentException"></exception>
+    ''' <exception cref="ArgumentNullException"></exception>
+    ''' <exception cref="Exception"></exception>
     Public Sub WriteValue(ByVal section As String, ByVal key As String, ByVal value As String)
         Try
 
@@ -174,13 +182,13 @@ Public Class IniControl
 
             ' セクション、キー、値の入力チェック
             If String.IsNullOrWhiteSpace(section) Then
-                Throw New Exception()
+                Throw New ArgumentException("セクションに空白は指定できません")
             End If
             If String.IsNullOrWhiteSpace(key) Then
-                Throw New Exception()
+                Throw New ArgumentException("キーに空白は指定できません")
             End If
             If value Is Nothing Then
-                Throw New Exception()
+                Throw New ArgumentNullException("値に Null は指定できません")
             End If
 
             ' 値書き込み
@@ -188,7 +196,7 @@ Public Class IniControl
 
             ' 失敗時は例外をスロー
             If intRet <= 0 Then
-                Throw New Exception()
+                Throw New Exception("ファイル：" & Me.m_filename & ", セクション：" & section.Trim & ", キー：" & key.Trim & "への値の書き込みに失敗しました")
             End If
         Catch ex As Exception
             Throw

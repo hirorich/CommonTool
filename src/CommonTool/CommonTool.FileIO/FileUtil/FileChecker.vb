@@ -17,6 +17,7 @@ Namespace FileUtil
         ''' ファイルの存在チェック
         ''' </summary>
         ''' <param name="filename">ファイル名</param>
+        ''' <exception cref="FileNotFoundException"></exception>
         Friend Shared Sub ExistFile(ByVal filename As String)
             Try
                 If Not File.Exists(filename) Then
