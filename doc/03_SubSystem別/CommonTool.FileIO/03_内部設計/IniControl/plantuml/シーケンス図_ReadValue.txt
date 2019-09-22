@@ -3,10 +3,10 @@
 [-> IniControl: ReadValue()
 activate IniControl
 
-IniControl -> FileUtil: Exist()
-activate FileUtil
-IniControl <-- FileUtil
-deactivate FileUtil
+IniControl -> FileChecker: ExistFile()
+activate FileChecker
+IniControl <-- FileChecker
+deactivate FileChecker
 
 IniControl -> Kernel32: GerPrivateProfileString()
 activate Kernel32
