@@ -95,6 +95,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TestCase\Case6.vb" />
     <Compile Include="TestCase\Case5.vb" />
     <Compile Include="TestCase\Case4.vb" />
     <Compile Include="TestCase\Case3.vb" />
