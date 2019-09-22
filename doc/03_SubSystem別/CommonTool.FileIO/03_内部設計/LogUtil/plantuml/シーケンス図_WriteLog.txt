@@ -1,0 +1,31 @@
+@startuml ..\シーケンス図_WriteLog.png
+
+[-> LogUtil: WriteLog()
+activate LogUtil
+
+LogUtil -> ILogWriter: WriteLog()
+activate ILogWriter
+
+ILogWriter -> LogWriterImpl: WriteLog()
+activate LogWriterImpl
+
+LogWriterImpl -> TextWriter: WriteAppend()
+activate TextWriter
+
+TextWriter -> TextWriter: Write()
+activate TextWriter
+
+deactivate TextWriter
+LogWriterImpl <-- TextWriter
+deactivate TextWriter
+
+ILogWriter <-- LogWriterImpl
+deactivate LogWriterImpl
+
+LogUtil <-- ILogWriter
+deactivate ILogWriter
+
+[<-- LogUtil
+deactivate LogUtil
+
+@enduml

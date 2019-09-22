@@ -1,0 +1,80 @@
+@startuml ..\要求図.png
+
+object 主要求<<requirement>> {
+  Text = テストツールを作成する
+}
+
+object スタブ<<physicalRequirement>> #lightgrey {
+  Text = スタブの実装
+}
+主要求 +-- スタブ
+
+object ドライバ<<physicalRequirement>> {
+  Text = ドライバの実装
+}
+主要求 +-- ドライバ
+
+object 外部コマンド実行<<functionalRequirement>> {
+  Text = 外部コマンドを呼び出す
+}
+ドライバ <.. 外部コマンド実行:<<deriveReqt>>
+
+object 構造<<designConstraint>> {
+  Text = 複数の共通部品で成り立つ
+}
+主要求 +-- 構造
+
+object 環境設定<<functionalRequirement>> {
+  Text = 環境設定を読み書きする
+}
+外部コマンド実行 <.. 環境設定:<<deriveReqt>>
+構造 <.. 環境設定:<<deriveReqt>>
+
+object エビデンス<<interfaceRequirement>> {
+  Text = エビデンスを作成する
+}
+主要求 +-- エビデンス
+
+object 実行ログ<<functionalRequirement>> {
+  Text = 部品内の実行ログを取る
+}
+エビデンス <.. 実行ログ:<<deriveReqt>>
+
+object DBダンプ<<functionalRequirement>> {
+  Text = DBダンプのエビデンス作成
+}
+エビデンス <.. DBダンプ:<<deriveReqt>>
+
+object DB操作<<functionalRequirement>> {
+  Text = クエリを実行し結果を得る
+}
+DBダンプ <.. DB操作:<<satisfy>>
+
+object 外部ファイル出力<<functionalRequirement>> {
+  Text = 外部ファイルに出力する
+}
+エビデンス <.. 外部ファイル出力:<<satisfy>>
+DBダンプ <.. 外部ファイル出力:<<satisfy>>
+実行ログ <.. 外部ファイル出力:<<deriveReqt>>
+
+object Excel<<functionalRequirement>> {
+  Text = Excelファイルに出力する
+}
+外部ファイル出力 <.. Excel:<<refine>>
+
+object TEXT<<functionalRequirement>> {
+  Text = テキストファイルに出力する
+}
+外部ファイル出力 <.. TEXT:<<refine>>
+
+object LOG<<functionalRequirement>> {
+  Text = LOGファイルに出力する
+}
+外部ファイル出力 <.. LOG:<<refine>>
+
+object IMAGE<<functionalRequirement>> #lightgrey {
+  Text = 画像ファイルに出力する
+}
+外部ファイル出力 <.. IMAGE:<<refine>>
+
+@enduml

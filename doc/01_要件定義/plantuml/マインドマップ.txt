@@ -1,0 +1,112 @@
+@startuml ..\マインドマップ.png
+
+left to right direction
+
+usecase (テスト実施の簡略化) <<Requirement>> as (Requirement)
+
+rectangle When
+rectangle Where
+rectangle Who
+rectangle What
+rectangle Why
+
+Requirement -- Why
+Requirement -- When
+Requirement -- Where
+Requirement -- Who
+Requirement -- What
+
+
+
+usecase (テストの実施が面倒) as (reason1)
+usecase (エビデンス取得が面倒) as (reason2)
+usecase (エビデンス整理が面倒) as (reason3)
+usecase (テストツール作成が面倒) as (reason4)
+usecase (テストデータ作成が面倒) as (reason5)
+Why -- (reason1)
+Why -- (reason2)
+Why -- (reason3)
+Why -- (reason5)
+(reason1) -- (reason4)
+(reason2) -- (reason4)
+(reason3) -- (reason4)
+(reason5) -- (reason4)
+
+usecase (テスト期間中) as (time1)
+usecase (結合テスト) as (time2)
+When -- (time1)
+(time1) -- (単体テスト)
+(time1) -- (time2)
+(time2) -- (システム間結合テスト)
+(time2) -- (システム内結合テスト)
+
+usecase (テスト環境) as (env1)
+Where -- (env1)
+(env1) -- (Client)
+(env1) -- (Server)
+(env1) -- (DB)
+(Client) -- (.exe)
+(Client) -- (.bat)
+(Client) -- (.dll)
+(Client) -- (DB)
+(Server) -- (HTTP)
+(Server) -- (FTP)
+(Server) -- (DB)
+(DB) -- (SQL Server)
+(DB) -- (Oracle)
+(DB) -- (DB2)
+(DB) -- (MySQL)
+(DB) -- (Access)
+
+Who -- (テストツール作成者)
+Who -- (テスター)
+Who -- (レビュアー)
+
+usecase (エビデンス) as (obj1)
+usecase (スタブ) as (obj2)
+usecase (ドライバ) as (obj3)
+usecase (テスト環境に依存) as (obj4)
+usecase (テストの期待結果に依存) as (obj5)
+usecase (プロジェクトに依存) as (obj6)
+usecase (ログ) as (obj7)
+usecase (画面キャプチャ) as (obj8)
+usecase (DBダンプ) as (obj9)
+usecase (実行ログ) as (obj10)
+usecase (通信ログ) as (obj11)
+usecase (ファイル出力) as (obj12)
+usecase (テストツール) as (obj13)
+usecase (エビデンス取得ツール) as (obj14)
+usecase (テストデータ作成ツール) as (obj15)
+What -- (obj13)
+What -- (obj15)
+What -- (PG言語)
+(PG言語) -- (VB.NET)
+(PG言語) -- (java)
+(PG言語) -- (Python)
+(obj13) -- (obj2)
+(obj13) -- (obj3)
+(obj13) -- (obj14)
+(obj3) -- (外部コマンド実行)
+(obj14) -- (obj1)
+(obj2) -- (obj4)
+(obj3) -- (obj4)
+(obj14) -- (obj4)
+(obj1) -- (obj5)
+(obj4) -- (obj6)
+(obj5) -- (obj6)
+(obj1) -- (obj8)
+(obj1) -- (obj9)
+(obj1) -- (obj7)
+(obj7) -- (obj10)
+(obj7) -- (obj11)
+(obj1) -- (obj12)
+(obj7) -- (obj12)
+(obj8) -- (obj12)
+(obj9) -- (obj12)
+(obj12) -- (Excel)
+(obj12) -- (テキストファイル)
+(obj12) -- (log)
+(obj12) -- (画像ファイル)
+(obj12) -- (出力ファイル)
+
+@enduml

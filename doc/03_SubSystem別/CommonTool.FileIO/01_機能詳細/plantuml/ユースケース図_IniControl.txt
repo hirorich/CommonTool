@@ -1,0 +1,20 @@
+@startuml ..\ユースケース図_IniControl.png
+
+left to right direction
+
+actor 呼び出し元
+file ".ini" as IniFile
+
+rectangle CommonTool.FileIO {
+  rectangle IniControl {
+    呼び出し元 -- (iniファイルを読み込む)
+    呼び出し元 -- (iniファイルに書き込む)
+    (iniファイルを読み込む) <-- IniFile
+    (iniファイルに書き込む) --> IniFile
+    (セクション一覧読み込み) <.. (iniファイルを読み込む) : extends
+    (iniファイルを読み込む) .> (キー一覧読み込み) : extends
+    (iniファイルを読み込む) ..> (値読み込み) : extends
+  }
+}
+
+@enduml

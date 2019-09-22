@@ -1,0 +1,41 @@
+@startuml ..\コンポーネント図_IniControl.png
+
+interface "呼び出し元" as caller
+
+component "CommonTool.FileIO.dll" as FileIO {
+  rectangle IniControl {
+    (iniファイルに書き込む)
+    (iniファイルを読み込む)
+  }
+  rectangle TextWriter {
+    (ファイルの存在チェック)
+  }
+}
+
+package "WindowsAPI" as WinAPI {
+  component "kernel32.dll" as kernel32 {
+    (GetPrivateProfileSectionNames)
+    (GetPrivateProfileSection)
+    (GetPrivateProfileString)
+    (WritePrivateProfileString)
+  }
+}
+
+file ".ini" as IniFile
+
+caller --> (iniファイルを読み込む)
+caller --> (iniファイルに書き込む)
+
+(ファイルの存在チェック) <-- IniControl
+
+(iniファイルを読み込む) --> (GetPrivateProfileSectionNames)
+(iniファイルを読み込む) --> (GetPrivateProfileSection)
+(iniファイルを読み込む) --> (GetPrivateProfileString)
+(iniファイルに書き込む) --> (WritePrivateProfileString)
+
+(GetPrivateProfileSectionNames) --> IniFile
+(GetPrivateProfileSection) --> IniFile
+(GetPrivateProfileString) --> IniFile
+(WritePrivateProfileString) --> IniFile
+
+@enduml

@@ -1,0 +1,66 @@
+@startuml ..\コンポーネント図.png
+
+package CommonTool {
+  component Command
+  component Image #lightgrey
+  component DB
+  component FileIO
+  component Excel
+}
+
+database DBServer
+database SQLServer
+database Access
+
+component 外部コマンド
+
+interface 環境変数
+interface システム環境変数
+interface ユーザ環境変数
+interface プロセス環境変数
+
+file 画像ファイル #lightgrey
+file テキストファイル as text
+file Excelファイル
+file ".xls" as xls
+file ".xlsx" as xlsx #lightgrey
+file ".log" as ログファイル
+file ".csv" as csv
+file ".xml" as xml #lightgrey
+file ".json" as json #lightgrey
+file ".ini" as IniFile
+file ".env" as env
+file .png as png #lightgrey
+
+callCommand -(0- Command
+Command -(0- 外部コマンド
+Command <-- env
+Command <-- 環境変数
+環境変数 <|-- システム環境変数
+環境変数 <|-- ユーザ環境変数
+環境変数 <|-- プロセス環境変数
+
+interface callImage #lightgrey
+callImage -(0- Image
+Image --> 画像ファイル
+画像ファイル <|-- png
+
+callDB -(0- DB
+DB -(0- DBServer
+DBServer <|-- SQLServer
+DBServer <|-- Access
+
+callFileIO -(0- FileIO
+FileIO --> ログファイル
+FileIO <--> IniFile
+FileIO --> text
+text <|-- csv
+text <|-- xml
+text <|-- json
+
+callExcel -(0- Excel
+Excel --> Excelファイル
+Excelファイル <|-- xls
+Excelファイル <|-- xlsx
+
+@enduml

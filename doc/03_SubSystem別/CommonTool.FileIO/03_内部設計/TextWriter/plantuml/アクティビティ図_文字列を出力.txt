@@ -1,0 +1,19 @@
+@startuml ..\アクティビティ図_文字列を出力.png
+
+|TextWriter|
+start
+if (上書き or 追加) then (上書き)
+    :上書きモードでファイルを開く;
+else (追加)
+    :追加モードでファイルを開く;
+endif
+
+while(出力する文字列分)
+    :出力内容を出力する;
+endwhile
+
+:ファイルを閉じる;
+
+stop
+
+@enduml

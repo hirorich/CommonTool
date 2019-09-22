@@ -1,0 +1,17 @@
+CommonTool.Command.dll
+  外部コマンドを呼び出す
+
+CommonTool.Image.dll
+  画像ファイルに出力する
+
+CommonTool.DB.dll
+  クエリを実行し結果を得る
+
+CommonTool.FileIO.dll
+  iniファイルを読み書きする
+  テキストファイルに出力する
+  ログファイルに出力する
+
+CommonTool.Excel.dll
+  Excelファイルに出力する
+

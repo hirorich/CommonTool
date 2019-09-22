@@ -1,0 +1,36 @@
+@startuml ..\ユースケース図.png
+
+left to right direction
+
+actor 呼び出し元
+
+rectangle CommonTool {
+  usecase (外部コマンドを呼び出す) as (外部コマンド実行)
+  usecase (環境変数を読み込む) as (環境変数)
+  usecase (ログファイルに出力する) as (LOG)
+  usecase (クエリを実行し結果を得る) as (DB操作)
+  usecase (テキストファイルに出力する) as (TEXT)
+  usecase (Excelファイルに出力する) as (Excel)
+  usecase (画像ファイルに出力する) as (IMAGE) #lightgrey
+  usecase (iniファイルを読み書きする) as (INI)
+
+  (外部コマンド実行) .> (環境変数) : include
+}
+
+database DB
+component 外部コマンド
+
+
+
+呼び出し元 -- (LOG)
+呼び出し元 -- (DB操作)
+呼び出し元 -- (TEXT)
+呼び出し元 -- (Excel)
+呼び出し元 -- (外部コマンド実行)
+呼び出し元 -- (IMAGE)
+呼び出し元 -- (INI)
+
+(DB操作) -- DB
+(外部コマンド実行) -- 外部コマンド
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml ..\シーケンス図_ReadKeys.png
+
+[-> IniControl: ReadKeys()
+activate IniControl
+
+IniControl -> FileChecker: ExistFile()
+activate FileChecker
+IniControl <-- FileChecker
+deactivate FileChecker
+
+IniControl -> Kernel32: GerPrivateProfileSection()
+activate Kernel32
+
+Kernel32 -> Kernel32.dll: GerPrivateProfileSection()
+activate Kernel32.dll
+Kernel32 <-- Kernel32.dll
+deactivate Kernel32.dll
+
+IniControl <-- Kernel32
+deactivate Kernel32
+
+[<-- IniControl
+deactivate IniControl
+
+@enduml

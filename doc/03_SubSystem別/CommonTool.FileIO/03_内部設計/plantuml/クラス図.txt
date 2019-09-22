@@ -1,0 +1,104 @@
+@startuml ..\ÉNÉâÉXê}.png
+
+package CommonTool.FileIO {
+    class CsvUtil {
+      - New(filename:String)
+      + {static}WriteOver(data:String)
+      + {static}WriteOver(data:String())
+      + {static}WriteAppend(data:String)
+      + {static}WriteAppend(data:String())
+    }
+
+    class IniControl {
+      - m_filename:String
+      
+      + New(filename:String)
+      + ReadSections():String()
+      + ReadKeys(section:String):String()
+      + ReadValue(section:String, key:String):String
+      + WriteValue(section:String, key:String, value:String)
+    }
+
+    class LogUtil {
+      - {static}m_LogWriterImpl:ILogWriter
+      
+      - New()
+      + {static}LogWriterImpl(value:ILogWriter)
+      + {static}WriteLog(data:String, Optional optionArgs:Collection = Nothing)
+      + {static}WriteLog(data:Exception, Optional optionArgs:Collection = Nothing)
+    }
+
+    package FileUtil {
+        class FileChecker {
+          - New()
+          ~ {static}ExistFile(filename:String)
+        }
+    }
+
+    package WinAPI {
+        class Kernel32 {
+          - New()
+          ~ {static}WritePrivateProfileString()
+          ~ {static}GetPrivateProfileSection()
+          ~ {static}GetPrivateProfileSectionNames()
+          ~ {static}GetPrivateProfileString()
+        }
+    }
+
+    package Csv {
+        class CsvWriter {
+          - m_filename:String
+          
+          ~ New(filename:String)
+          ~ WriteOver(data:String())
+          ~ WriteAppend(data:String())
+          ~ WriteOver(data:DataTable, colname:Boolean)
+          ~ WriteAppend(data:DataTable, colname:Boolean)
+          - Write(data:DataTable, colname:Boolean, append:Boolean)
+          ~ {static}JoinToLine(data:String()):String
+          ~ {static}Sanitize(data:String):String
+        }
+    }
+
+    package Log {
+        interface ILogWriter {
+          WriteLog(data:String, Optional optionArgs:Collection = Nothing)
+          WriteLog(data:Exception, Optional optionArgs:Collection = Nothing)
+        }
+
+        class LogWriterImpl {
+          - m_filename:String
+          
+          ~ WriteLog(data:String, Optional optionArgs:Collection = Nothing)
+          ~ WriteLog(data:Exception, Optional optionArgs:Collection = Nothing)
+          - WriteLog(data:String, level:String)
+          ~ {static}Sanitize(data:String):String
+        }
+        ILogWriter <|.. LogWriterImpl
+
+        package Const as Log.Const {
+            class LogLevel
+        }
+    }
+    LogUtil *-- ILogWriter
+
+    package Text {
+        class TextWriter {
+          - m_filename:String
+          
+          ~ New(filename:String)
+          ~ WriteOver(data:String)
+          ~ WriteAppend(data:String)
+          ~ WriteOver(data:String())
+          ~ WriteAppend(data:String())
+          - Write(data:String(), append:Boolean)
+        }
+    }
+
+    package Const as FileIO.Const {
+        class SpecialCharacter
+        class BufferSize
+    }
+}
+
+@enduml

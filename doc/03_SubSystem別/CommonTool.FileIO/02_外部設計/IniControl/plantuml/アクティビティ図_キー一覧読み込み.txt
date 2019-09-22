@@ -1,0 +1,18 @@
+@startuml ..\アクティビティ図_キー一覧読み込み.png
+
+|IniControl|
+|KERNEL32.dll|
+
+|IniControl|
+start
+:対象ファイルの存在チェック;
+
+|KERNEL32.dll|
+:GetPrivateProfileSection;
+
+|IniControl|
+:取得内容からキー情報取得;
+:キー情報を配列化;
+stop
+
+@enduml

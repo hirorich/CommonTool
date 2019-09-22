@@ -1,0 +1,27 @@
+@startuml ..\ユースケース図.png
+
+left to right direction
+
+actor 呼び出し元
+file ".ini" as IniFile
+file ".log" as LogFile
+file ".csv" as CsvFile
+
+rectangle CommonTool.FileIO as FileIO {
+  rectangle IniControl {
+    呼び出し元 -- (iniファイルを読み込む)
+    呼び出し元 -- (iniファイルに書き込む)
+    (iniファイルを読み込む) <-- IniFile
+    (iniファイルに書き込む) --> IniFile
+  }
+  rectangle LogUtil {
+    呼び出し元 -- (ログファイルに書き込む)
+    (ログファイルに書き込む) --> LogFile
+  }
+  rectangle CsvUtil {
+    呼び出し元 -- (CSVファイルに書き込む)
+    (CSVファイルに書き込む) --> CsvFile
+  }
+}
+
+@enduml

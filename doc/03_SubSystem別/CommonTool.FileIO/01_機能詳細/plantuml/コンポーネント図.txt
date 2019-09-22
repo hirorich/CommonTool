@@ -1,0 +1,37 @@
+@startuml ..\コンポーネント図.png
+
+interface "呼び出し元" as caller
+
+component "CommonTool.FileIO.dll" as FileIO {
+  rectangle IniControl
+  rectangle LogUtil
+  rectangle CsvUtil
+  rectangle TextWriter
+}
+
+package "WindowsAPI" as WinAPI {
+  component "kernel32.dll" as kernel32
+}
+
+component "外部部品" as OtherLogWriter
+
+file ".ini" as IniFile
+file ".log" as LogFile
+file ".csv" as CsvFile
+
+caller --> IniControl
+caller --> LogUtil
+caller --> CsvUtil
+
+IniControl --> kernel32
+kernel32 --> IniFile
+
+IniControl --> TextWriter
+LogUtil --> TextWriter
+TextWriter --> LogFile
+LogUtil --> OtherLogWriter
+OtherLogWriter --> LogFile
+CsvUtil --> TextWriter
+TextWriter --> CsvFile
+
+@enduml
