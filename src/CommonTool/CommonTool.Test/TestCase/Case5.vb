@@ -27,7 +27,7 @@ Namespace TestCase
                             "セクションの取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション一覧: " & String.Join(", ", sections).Trim
+                            "セクション一覧: " & String.Join(", ", sections)
                     End If
 
                 Catch ex As Exception
@@ -44,7 +44,7 @@ Namespace TestCase
                             "セクションの取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション一覧: " & String.Join(", ", sections).Trim
+                            "セクション一覧: " & String.Join(", ", sections)
                     End If
 
                 Catch ex As Exception
@@ -61,7 +61,7 @@ Namespace TestCase
                             "セクションの取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション一覧: " & String.Join(", ", sections).Trim
+                            "セクション一覧: " & String.Join(", ", sections)
                     End If
 
                 Catch ex As Exception

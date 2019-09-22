@@ -27,7 +27,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
@@ -43,7 +43,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
@@ -59,7 +59,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
@@ -75,7 +75,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
@@ -91,7 +91,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
@@ -107,7 +107,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
@@ -123,7 +123,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
@@ -139,7 +139,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
@@ -155,7 +155,7 @@ Namespace TestCase
                             "セクション " & section & " の取得結果はNothing"
                     Else
                         Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
-                            "セクション " & section & ": " & String.Join(", ", keys).Trim
+                            "セクション " & section & ": " & String.Join(", ", keys)
                     End If
                 Catch ex As Exception
                     Call LogUtil.WriteLog(ex)
