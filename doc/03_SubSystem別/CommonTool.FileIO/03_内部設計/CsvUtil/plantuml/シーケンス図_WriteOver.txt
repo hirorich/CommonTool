@@ -3,11 +3,6 @@
 [-> CsvUtil: WriteOver()
 activate CsvUtil
 
-CsvUtil -> FileChecker: ExistFile()
-activate FileChecker
-CsvUtil <-- FileChecker
-deactivate FileChecker
-
 CsvUtil-> CsvWriter: WriteOver()
 activate CsvWriter
 
