@@ -236,6 +236,15 @@ Namespace TestCase
                     Call LogUtil.WriteLog(ex)
                 End Try
 
+                Try
+                    section = String.Empty
+                    key = "key1"
+                    Form1.txtTestResult.Text = Form1.txtTestResult.Text & vbCrLf &
+                        "Section:" & section & ", Key:" & key & ", Value:" & control.ReadValue(section, key)
+                Catch ex As Exception
+                    Call LogUtil.WriteLog(ex)
+                End Try
+
 
 
                 Try
